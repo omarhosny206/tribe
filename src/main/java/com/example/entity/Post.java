@@ -15,12 +15,9 @@ import java.util.List;
 public class Post {
     @Id
     private long id;
-
     private String content;
-
     @ManyToOne
     private User user;
-
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 }

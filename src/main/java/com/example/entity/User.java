@@ -20,10 +20,13 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
+    private String username;
+
+    private String password;
+    @Column(unique = true)
     private String email;
 
-    @Column(unique = true)
-    private String username;
+
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
