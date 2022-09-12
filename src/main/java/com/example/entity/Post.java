@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Post {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String content;
     @ManyToOne

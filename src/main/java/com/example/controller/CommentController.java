@@ -1,5 +1,5 @@
 package com.example.controller;
-/*
+
 import com.example.dto.CommentDto;
 import com.example.service.CommentService;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +14,13 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @PostMapping("/")
-    public ResponseEntity<String> save(CommentDto commentDto) {
+    @PostMapping("/add")
+    public ResponseEntity<String> save(@RequestBody CommentDto commentDto) {
         return commentService.save(commentDto);
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteById(@RequestParam long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable long id) {
         return commentService.deleteById(id);
     }
 }
-*/

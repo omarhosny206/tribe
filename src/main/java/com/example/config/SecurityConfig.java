@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
-    private final String[] ALLOWED_ENDPOINTS = { "/login/**", "/register/**","/post/**"};
+    private final String[] ALLOWED_ENDPOINTS = { "/login/**", "/register/**","/post/**","/comments/**"};
 
 
     public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter) {

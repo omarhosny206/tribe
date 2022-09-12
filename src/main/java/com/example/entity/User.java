@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String firstName;
@@ -25,8 +26,6 @@ public class User {
     private String password;
     @Column(unique = true)
     private String email;
-
-
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;

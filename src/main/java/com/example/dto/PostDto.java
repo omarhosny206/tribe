@@ -13,6 +13,6 @@ import java.util.List;
 public class PostDto {
     private long id;
     private String content;
-    private long userId;
+    //private long userId;
     private List<Comment> comments;
 }

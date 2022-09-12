@@ -35,8 +35,7 @@ public class LoginService {
         }
         catch (Exception e)
         {
-            System.out.println("a7aaaaaaaaaaaaa");
-            return new ResponseEntity<>(new String("invalid username or password"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("invalid username or password", HttpStatus.BAD_REQUEST);
         }
         final UserDetails userDetails
                 = userService.loadUserByUsername(loginRequest.getEmail());
