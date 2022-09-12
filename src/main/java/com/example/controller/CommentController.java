@@ -1,5 +1,5 @@
 package com.example.controller;
-
+/*
 import com.example.dto.CommentDto;
 import com.example.service.CommentService;
 import org.springframework.http.ResponseEntity;
@@ -24,3 +24,4 @@ public class CommentController {
         return commentService.deleteById(id);
     }
 }
+*/

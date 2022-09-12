@@ -7,7 +7,7 @@ import com.example.repository.CommentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+/*
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
@@ -43,3 +43,4 @@ public class CommentService {
         return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);
     }
 }
+*/
