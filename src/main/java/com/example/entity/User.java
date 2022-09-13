@@ -36,6 +36,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "following_id"))
     private List<User> following;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
     @ManyToMany
     @JoinTable(name = "user_followers",
             joinColumns = @JoinColumn(name = "user_id"),

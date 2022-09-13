@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDto {
-    private long id;
+   // private long id;
     private String content;
     private List<Comment> comments;
 }

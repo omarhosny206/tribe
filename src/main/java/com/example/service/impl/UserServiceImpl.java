@@ -72,4 +72,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         User user=userRepository.findByEmail(username);
         return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),new ArrayList<>());
     }
+
+
 }

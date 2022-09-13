@@ -5,6 +5,8 @@ import com.example.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
@@ -15,8 +17,8 @@ public class CommentController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> save(@RequestBody CommentDto commentDto) {
-        return commentService.save(commentDto);
+    public ResponseEntity<String> save(Principal principal, @RequestBody CommentDto commentDto) {
+        return commentService.save(principal,commentDto);
     }
 
     @DeleteMapping("/{id}")

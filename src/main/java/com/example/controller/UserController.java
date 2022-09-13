@@ -1,11 +1,14 @@
 package com.example.controller;
 
+import com.example.dto.PostDto;
+import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -39,5 +42,11 @@ public class UserController {
     @DeleteMapping("/followers")
     public ResponseEntity<String> unFollow(Principal principal, @RequestParam String username) {
         return userService.unfollow(principal,username);
+    }
+
+    @PostMapping("/feed")
+    public ResponseEntity<List<PostDto>> getFeed(Principal principal)
+    {
+        return null;
     }
 }
