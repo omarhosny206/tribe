@@ -14,12 +14,12 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity<String> save(@RequestBody CommentDto commentDto) {
         return commentService.save(commentDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable long id) {
         return commentService.deleteById(id);
     }

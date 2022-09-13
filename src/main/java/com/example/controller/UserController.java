@@ -5,6 +5,8 @@ import com.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -19,13 +21,18 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @GetMapping("/")
-    public User getByUsername(@RequestParam String username) {
+    @GetMapping("/{email}")
+    public User getByEmail(@PathVariable String email) {
+        return userService.getByEmail(email);
+    }
+
+    @GetMapping("/{username}")
+    public User getByUsername(@PathVariable String username) {
         return userService.getByUsername(username);
     }
 
     @PostMapping("/followers")
-    public ResponseEntity<String> follow(@RequestParam String username) {
-        return userService.follow(username);
+    public ResponseEntity<String> follow(Principal principal, @RequestParam String username) {
+        return userService.follow(principal, username);
     }
 }
