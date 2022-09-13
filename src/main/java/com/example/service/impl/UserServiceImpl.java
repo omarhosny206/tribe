@@ -46,9 +46,25 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if(userToFollow == null) {
             return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
         }
-
+        currentUser.getFollowing().add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
         return new ResponseEntity<>("Followed successfully", HttpStatus.OK);
+
+    }
+
+    @Transactional
+    @Override
+    public ResponseEntity<String> unfollow(Principal principal, String username) {
+        User currentUser = getByEmail(principal.getName());
+        User userToUnFollow=getByUsername(username);
+
+        if(userToUnFollow==null)
+        {
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
+        }
+        currentUser.getFollowing().remove(userToUnFollow);
+        userToUnFollow.getFollowers().remove(currentUser);
+        return new ResponseEntity<>("UnFollowed successfully",HttpStatus.OK);
     }
 
     @Override

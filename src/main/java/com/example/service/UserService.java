@@ -15,4 +15,6 @@ public interface UserService {
 
     @Transactional
     ResponseEntity<String> follow(Principal principal, String username);
+    @Transactional
+    ResponseEntity<String> unfollow(Principal principal, String username);
 }

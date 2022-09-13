@@ -35,4 +35,9 @@ public class UserController {
     public ResponseEntity<String> follow(Principal principal, @RequestParam String username) {
         return userService.follow(principal, username);
     }
+
+    @DeleteMapping("/followers")
+    public ResponseEntity<String> unFollow(Principal principal, @RequestParam String username) {
+        return userService.unfollow(principal,username);
+    }
 }
