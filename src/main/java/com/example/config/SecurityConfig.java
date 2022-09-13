@@ -1,4 +1,5 @@
 package com.example.config;
+
 import com.example.filter.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
-    private final String[] ALLOWED_ENDPOINTS = { "/login/**", "/register/**","/post/**","/comments/**"};
+    private final String[] ALLOWED_ENDPOINTS = {"/login/**", "/register/**", "/post/**", "/comments/**"};
 
 
     public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter) {
@@ -47,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

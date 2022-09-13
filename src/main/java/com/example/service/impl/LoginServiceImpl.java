@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
+    private final AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
     private UserServiceImpl userService;
-    private final AuthenticationManager authenticationManager;
 
     public LoginServiceImpl(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -28,21 +28,18 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public ResponseEntity<?> login(LoginRequest loginRequest) throws Exception {
-        try
-        {
+        try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     loginRequest.getEmail(),
                     loginRequest.getPassword()
             ));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ResponseEntity<>("invalid username or password", HttpStatus.BAD_REQUEST);
         }
         final UserDetails userDetails
                 = userService.loadUserByUsername(loginRequest.getEmail());
         final String token =
                 jwtUtil.generateToken(userDetails);
-        return new ResponseEntity<>(new LoginResponse(loginRequest.getEmail(),token),HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResponse(loginRequest.getEmail(), token), HttpStatus.OK);
     }
 }

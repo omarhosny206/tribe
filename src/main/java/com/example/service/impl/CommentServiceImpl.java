@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<String> save(Principal principal,CommentDto commentDto) {
+    public ResponseEntity<String> save(Principal principal, CommentDto commentDto) {
         Optional<Post> post = postSerivce.getById(commentDto.getPostId());
 
         if (post.isPresent()) {

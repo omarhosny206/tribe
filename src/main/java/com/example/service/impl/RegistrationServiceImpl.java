@@ -19,8 +19,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public ResponseEntity<String> register(User user)
-    {
+    public ResponseEntity<String> register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return new ResponseEntity<>("user registered", HttpStatus.OK);

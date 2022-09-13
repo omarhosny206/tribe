@@ -18,7 +18,7 @@ public class CommentController {
 
     @PostMapping("/")
     public ResponseEntity<String> save(Principal principal, @RequestBody CommentDto commentDto) {
-        return commentService.save(principal,commentDto);
+        return commentService.save(principal, commentDto);
     }
 
     @DeleteMapping("/{id}")

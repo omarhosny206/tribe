@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.39">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>906</IntrospectionStateNumber>
+      <IntrospectionStateNumber>994</IntrospectionStateNumber>
       <ServerVersion>14.5</ServerVersion>
       <StartupTime>1662980012</StartupTime>
       <TimeZones>true ACDT
@@ -817,9 +817,9 @@ false Zulu
 13388||-9223372036854775807|C|G
 13388||-9223372036854775808|U|G
 13388||-9223372036854775807|U|G</Grants>
-      <IntrospectionStateNumber>920</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1015</IntrospectionStateNumber>
       <ObjectId>16619</ObjectId>
-      <Relations>sequence|table|16732|16733|1
+      <Relations>sequence|table|16885|16886|1
 </Relations>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4240,7 +4240,7 @@ false Zulu
     <schema id="265" parent="6" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>920</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1015</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4253,247 +4253,305 @@ false Zulu
     </sequence>
     <sequence id="267" parent="265" name="user_id_seq">
       <DataType>bigint|0s</DataType>
-      <ObjectId>16732</ObjectId>
-      <StateNumber>909</StateNumber>
+      <ObjectId>16885</ObjectId>
+      <StateNumber>997</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="268" parent="265" name="comment">
-      <ObjectId>16722</ObjectId>
-      <StateNumber>915</StateNumber>
+      <ObjectId>16875</ObjectId>
+      <StateNumber>1004</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="269" parent="265" name="post">
-      <ObjectId>16727</ObjectId>
-      <StateNumber>915</StateNumber>
+      <ObjectId>16880</ObjectId>
+      <StateNumber>1004</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="270" parent="265" name="user">
-      <ObjectId>16733</ObjectId>
-      <StateNumber>916</StateNumber>
+      <ObjectId>16886</ObjectId>
+      <StateNumber>1005</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="271" parent="265" name="user_followers">
-      <ObjectId>16740</ObjectId>
-      <StateNumber>917</StateNumber>
+      <ObjectId>16893</ObjectId>
+      <StateNumber>1007</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="272" parent="268" name="id">
+    <table id="272" parent="265" name="user_following">
+      <ObjectId>16896</ObjectId>
+      <StateNumber>1009</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="273" parent="268" name="id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>907</StateNumber>
+      <StateNumber>995</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="273" parent="268" name="content">
+    <column id="274" parent="268" name="content">
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
-      <StateNumber>907</StateNumber>
+      <StateNumber>995</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="268" name="post_id">
+    <column id="275" parent="268" name="post_id">
       <DataType>bigint|0s</DataType>
       <Position>3</Position>
-      <StateNumber>907</StateNumber>
+      <StateNumber>995</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="275" parent="268" name="fks1slvnkuemjsq2kj4h3vhx7i1">
+    <column id="276" parent="268" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+      <StateNumber>995</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="277" parent="268" name="fks1slvnkuemjsq2kj4h3vhx7i1">
       <ColNames>post_id</ColNames>
-      <ObjectId>16747</ObjectId>
+      <ObjectId>16903</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
       <RefKeyName>post_pkey</RefKeyName>
-      <StateNumber>915</StateNumber>
-      <RefTableId>16727</RefTableId>
+      <StateNumber>1004</StateNumber>
+      <RefTableId>16880</RefTableId>
       <RefTableName>post</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="276" parent="268" name="comment_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16725</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>907</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="277" parent="268" name="comment_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16726</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>907</StateNumber>
-      <UnderlyingIndexId>16725</UnderlyingIndexId>
-    </key>
-    <column id="278" parent="269" name="id">
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>908</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="279" parent="269" name="content">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>2</Position>
-      <StateNumber>908</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="280" parent="269" name="user_id">
-      <DataType>bigint|0s</DataType>
-      <Position>3</Position>
-      <StateNumber>908</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <foreign-key id="281" parent="269" name="fkgg4vj1xrsx0fy8gngoh2lm2c4">
+    <foreign-key id="278" parent="268" name="fk21q1akkb53ejonpnl5gsyq7l5">
       <ColNames>user_id</ColNames>
-      <ObjectId>16752</ObjectId>
+      <ObjectId>16908</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <StateNumber>916</StateNumber>
-      <RefTableId>16733</RefTableId>
+      <StateNumber>1005</StateNumber>
+      <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="282" parent="269" name="post_pkey">
+    <index id="279" parent="268" name="comment_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16730</ObjectId>
+      <ObjectId>16878</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>908</StateNumber>
+      <StateNumber>995</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="283" parent="269" name="post_pkey">
+    <key id="280" parent="268" name="comment_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16731</ObjectId>
+      <ObjectId>16879</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>908</StateNumber>
-      <UnderlyingIndexId>16730</UnderlyingIndexId>
+      <StateNumber>995</StateNumber>
+      <UnderlyingIndexId>16878</UnderlyingIndexId>
     </key>
-    <column id="284" parent="270" name="id">
+    <column id="281" parent="269" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>996</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="282" parent="269" name="content">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+      <StateNumber>996</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="283" parent="269" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>3</Position>
+      <StateNumber>996</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="284" parent="269" name="fkgg4vj1xrsx0fy8gngoh2lm2c4">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16913</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <StateNumber>1006</StateNumber>
+      <RefTableId>16886</RefTableId>
+      <RefTableName>user</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <index id="285" parent="269" name="post_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16883</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>996</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="286" parent="269" name="post_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16884</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>996</StateNumber>
+      <UnderlyingIndexId>16883</UnderlyingIndexId>
+    </key>
+    <column id="287" parent="270" name="id">
       <DataType>bigint|0s</DataType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="285" parent="270" name="email">
+    <column id="288" parent="270" name="email">
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="286" parent="270" name="first_name">
+    <column id="289" parent="270" name="first_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>3</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="287" parent="270" name="last_name">
+    <column id="290" parent="270" name="last_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>4</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="288" parent="270" name="password">
+    <column id="291" parent="270" name="password">
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="289" parent="270" name="username">
+    <column id="292" parent="270" name="username">
       <DataType>varchar(255)|0s</DataType>
       <Position>6</Position>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="290" parent="270" name="user_pkey">
+    <index id="293" parent="270" name="user_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16738</ObjectId>
+      <ObjectId>16891</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>909</StateNumber>
+      <StateNumber>997</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="291" parent="270" name="uk_ob8kqyqqgmefl0aco34akdtpe">
+    <index id="294" parent="270" name="uk_ob8kqyqqgmefl0aco34akdtpe">
       <ColNames>email</ColNames>
-      <ObjectId>16743</ObjectId>
-      <StateNumber>912</StateNumber>
+      <ObjectId>16899</ObjectId>
+      <StateNumber>1001</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="292" parent="270" name="uk_sb8bbouer5wak8vyiiy4pf2bx">
+    <index id="295" parent="270" name="uk_sb8bbouer5wak8vyiiy4pf2bx">
       <ColNames>username</ColNames>
-      <ObjectId>16745</ObjectId>
-      <StateNumber>914</StateNumber>
+      <ObjectId>16901</ObjectId>
+      <StateNumber>1003</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="293" parent="270" name="user_pkey">
+    <key id="296" parent="270" name="user_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16739</ObjectId>
+      <ObjectId>16892</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>909</StateNumber>
-      <UnderlyingIndexId>16738</UnderlyingIndexId>
+      <StateNumber>997</StateNumber>
+      <UnderlyingIndexId>16891</UnderlyingIndexId>
     </key>
-    <key id="294" parent="270" name="uk_ob8kqyqqgmefl0aco34akdtpe">
+    <key id="297" parent="270" name="uk_ob8kqyqqgmefl0aco34akdtpe">
       <ColNames>email</ColNames>
-      <ObjectId>16744</ObjectId>
-      <StateNumber>912</StateNumber>
-      <UnderlyingIndexId>16743</UnderlyingIndexId>
+      <ObjectId>16900</ObjectId>
+      <StateNumber>1001</StateNumber>
+      <UnderlyingIndexId>16899</UnderlyingIndexId>
     </key>
-    <key id="295" parent="270" name="uk_sb8bbouer5wak8vyiiy4pf2bx">
+    <key id="298" parent="270" name="uk_sb8bbouer5wak8vyiiy4pf2bx">
       <ColNames>username</ColNames>
-      <ObjectId>16746</ObjectId>
-      <StateNumber>914</StateNumber>
-      <UnderlyingIndexId>16745</UnderlyingIndexId>
+      <ObjectId>16902</ObjectId>
+      <StateNumber>1003</StateNumber>
+      <UnderlyingIndexId>16901</UnderlyingIndexId>
     </key>
-    <column id="296" parent="271" name="user_id">
+    <column id="299" parent="271" name="user_id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>910</StateNumber>
+      <StateNumber>998</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="297" parent="271" name="followers_id">
+    <column id="300" parent="271" name="follower_id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>910</StateNumber>
+      <StateNumber>998</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="298" parent="271" name="fkon60p6n1to1vqpy6e5rx5rxii">
+    <foreign-key id="301" parent="271" name="fkonqpyaojlyi860vt2avfo3jsf">
       <ColNames>user_id</ColNames>
-      <ObjectId>16762</ObjectId>
+      <ObjectId>16923</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
       <RefKeyName>user_pkey</RefKeyName>
-      <StateNumber>918</StateNumber>
-      <RefTableId>16733</RefTableId>
+      <StateNumber>1008</StateNumber>
+      <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="299" parent="271" name="fkta4u3flrsihc5tmyy9o645hl0">
-      <ColNames>followers_id</ColNames>
-      <ObjectId>16757</ObjectId>
+    <foreign-key id="302" parent="271" name="fkc9ngkf68qgwdyt9kqwd4v5b90">
+      <ColNames>follower_id</ColNames>
+      <ObjectId>16918</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
       <RefKeyName>user_pkey</RefKeyName>
-      <StateNumber>917</StateNumber>
-      <RefTableId>16733</RefTableId>
+      <StateNumber>1007</StateNumber>
+      <RefTableId>16886</RefTableId>
+      <RefTableName>user</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <column id="303" parent="272" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>999</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="304" parent="272" name="following_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>999</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="305" parent="272" name="fkrwxgipqyjyivwrl9id6fx4ljc">
+      <ColNames>user_id</ColNames>
+      <ObjectId>16933</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>user_pkey</RefKeyName>
+      <StateNumber>1010</StateNumber>
+      <RefTableId>16886</RefTableId>
+      <RefTableName>user</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <foreign-key id="306" parent="272" name="fko7odwikbf0itcly2vq8916oqq">
+      <ColNames>following_id</ColNames>
+      <ObjectId>16928</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>user_pkey</RefKeyName>
+      <StateNumber>1009</StateNumber>
+      <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
