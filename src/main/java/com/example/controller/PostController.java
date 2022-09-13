@@ -5,6 +5,7 @@ import com.example.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -17,7 +18,7 @@ public class PostController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> add(Principal principal, @RequestBody PostDto postDto) {
+    public ResponseEntity<String> add(Principal principal, @Valid @RequestBody PostDto postDto) {
         return postService.save(principal, postDto);
     }
 

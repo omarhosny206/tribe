@@ -5,6 +5,7 @@ import com.example.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -17,7 +18,7 @@ public class CommentController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> save(Principal principal, @RequestBody CommentDto commentDto) {
+    public ResponseEntity<String> save(Principal principal, @Valid @RequestBody CommentDto commentDto) {
         return commentService.save(principal, commentDto);
     }
 

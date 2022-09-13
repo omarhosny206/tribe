@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -17,14 +20,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty
+    @Column(nullable = false)
     private String firstName;
+
+    @NotEmpty
+    @Column(nullable = false)
     private String lastName;
 
-    @Column(unique = true)
+    @NotEmpty
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @NotEmpty
+    @Size(min = 8, message = "Password should be at least 8 characters/digits")
+    @Column(nullable = false)
     private String password;
-    @Column(unique = true)
+
+    @Email
+    @Column(unique = true, nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "user")
