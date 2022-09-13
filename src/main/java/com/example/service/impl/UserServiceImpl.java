@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.dto.CommentDto;
 import com.example.dto.PostDto;
 import com.example.entity.User;
+import com.example.exception.ResourceNotFoundException;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         User userToFollow = getByUsername(username);
 
         if (userToFollow == null) {
-            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
+            throw new ResourceNotFoundException("user not found");
         }
         currentUser.getFollowing().add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         User userToUnFollow = getByUsername(username);
 
         if (userToUnFollow == null) {
-            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
+            throw new ResourceNotFoundException("user not found");
         }
         currentUser.getFollowing().remove(userToUnFollow);
         userToUnFollow.getFollowers().remove(currentUser);

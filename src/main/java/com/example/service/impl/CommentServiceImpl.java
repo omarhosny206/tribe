@@ -4,6 +4,7 @@ import com.example.dto.CommentDto;
 import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
+import com.example.exception.ResourceNotFoundException;
 import com.example.repository.CommentRepository;
 import com.example.repository.UserRepository;
 import com.example.service.CommentService;
@@ -47,7 +48,6 @@ public class CommentServiceImpl implements CommentService {
             return new ResponseEntity<>("Comment created successfully", HttpStatus.CREATED);
 
         }
-
         return new ResponseEntity<>("No post to associate with", HttpStatus.BAD_REQUEST);
     }
 
@@ -56,7 +56,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(id).orElse(null);
 
         if (comment == null)
-            return new ResponseEntity<>("Comment not found", HttpStatus.BAD_REQUEST);
+            throw new ResourceNotFoundException("Not found comment with id = " + id);
 
         commentRepository.deleteById(id);
         return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);

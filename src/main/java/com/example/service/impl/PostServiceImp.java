@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.dto.PostDto;
 import com.example.entity.Post;
 import com.example.entity.User;
+import com.example.exception.ResourceNotFoundException;
 import com.example.repository.PostRepository;
 import com.example.repository.UserRepository;
 import com.example.service.PostService;
@@ -46,7 +47,7 @@ public class PostServiceImp implements PostService {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
-            return new ResponseEntity<>("post not found", HttpStatus.BAD_REQUEST);
+            throw new ResourceNotFoundException("post not found");
         } else {
             postRepository.delete(post);
             return new ResponseEntity<>("post deleted", HttpStatus.OK);
