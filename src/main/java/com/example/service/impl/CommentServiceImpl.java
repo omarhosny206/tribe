@@ -4,7 +4,7 @@ import com.example.dto.CommentDto;
 import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
-import com.example.exception.NotFoundException;
+import com.example.exception.CustomException;
 import com.example.response.MessageResponse;
 import com.example.repository.CommentRepository;
 import com.example.repository.UserRepository;
@@ -56,7 +56,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.findById(id).orElse(null);
 
         if (comment == null)
-            throw new NotFoundException("Not found comment with id = " + id);
+            throw new CustomException("Not found comment with id = " + id);
 
         commentRepository.deleteById(id);
         return new ResponseEntity<>(new MessageResponse("Comment deleted successfully"), HttpStatus.OK);

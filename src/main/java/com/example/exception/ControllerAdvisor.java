@@ -29,8 +29,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(result);
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<MessageResponse> resourceNotFoundException(NotFoundException ex, WebRequest request) {
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<MessageResponse> resourceNotFoundException(CustomException ex, WebRequest request) {
         MessageResponse message = new MessageResponse(
                 ex.getMessage()
         );
