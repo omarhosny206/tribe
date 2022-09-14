@@ -3,9 +3,11 @@ package com.example.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,10 @@ public class Post {
     @NotEmpty
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
+    private Date date = new Date();
 
     @ManyToOne
     @JoinColumn(nullable = false)

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +19,6 @@ public class CommentDto {
 
     @NotEmpty
     private String content;
+
+    private Date date = new Date();
 }

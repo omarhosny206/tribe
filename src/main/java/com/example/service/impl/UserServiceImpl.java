@@ -76,14 +76,11 @@ public class UserServiceImpl implements UserService {
 
         user.getFollowing().forEach(following -> {
             following.getPosts().forEach(post -> {
-                PostDto postDto = new PostDto();
                 List<CommentDto> commentsDtos = post.getComments().stream()
-                        .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent()))
+                        .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getDate()))
                         .toList();
 
-                postDto.setContent(post.getContent());
-                postDto.setCommentsDtos(commentsDtos);
-                postDto.setUsername(following.getUsername());
+                PostDto postDto = new PostDto(following.getUsername(), post.getContent(), post.getDate(), commentsDtos);
                 result.add(postDto);
             });
         });

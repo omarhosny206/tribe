@@ -33,7 +33,7 @@ public class User {
     private String username;
 
     @NotEmpty
-    @Size(min = 8, message = "Password should be at least 8 characters/digits")
+    @Size(min = 8, message = "Password should be at least 8 characters")
     @Column(nullable = false)
     private String password;
 

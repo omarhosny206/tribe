@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,6 +17,8 @@ public class PostDto {
 
     @NotEmpty
     private String content;
+
+    private Date date = new Date();
 
     @JsonProperty("comments")
     private List<CommentDto> commentsDtos;
