@@ -13,4 +13,6 @@ public interface PostService {
     ResponseEntity<?> deleteById(long id);
 
     Optional<Post> getById(long id);
+
+    public ResponseEntity<String>upVote(long id);
 }

@@ -26,4 +26,10 @@ public class PostController {
     public ResponseEntity<?> delete(@PathVariable long id) {
         return postService.deleteById(id);
     }
+
+    @PostMapping("/upvote/{id}")
+    public ResponseEntity<String>upvote(@PathVariable Long id)
+    {
+        return postService.upVote(id);
+    }
 }

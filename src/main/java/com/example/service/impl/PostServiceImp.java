@@ -53,9 +53,24 @@ public class PostServiceImp implements PostService {
             return new ResponseEntity<>("post deleted", HttpStatus.OK);
         }
     }
+    @Override
+    public ResponseEntity<String>upVote(long id)
+    {
+        System.out.println("post id is" + id);
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            throw new ResourceNotFoundException("post not found");
+        }
+        else {
+            post.setVotes(post.getVotes()+1);
+            return new ResponseEntity<>("upvoted successfully", HttpStatus.OK);
+        }
+    }
 
     @Override
     public Optional<Post> getById(long id) {
         return postRepository.findById(id);
     }
+
+
 }
