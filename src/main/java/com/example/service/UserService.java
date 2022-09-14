@@ -23,4 +23,7 @@ public interface UserService extends UserDetailsService {
 
     @Transactional
     ResponseEntity<?> unfollow(Principal principal, String username);
+
+    @Transactional
+    ResponseEntity<?> block(Principal principal, String username);
 }

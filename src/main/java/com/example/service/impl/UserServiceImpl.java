@@ -50,10 +50,14 @@ public class UserServiceImpl implements UserService {
         if (userToFollow == null) {
             throw new CustomException("user not found");
         }
+
+        List<User> blocked = currentUser.getBlocked();
+        if (blocked.contains(userToFollow))
+            throw new CustomException("can't follow, user is already blocked");
+
         currentUser.getFollowing().add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
         return new ResponseEntity<>(new MessageResponse("Followed successfully"), HttpStatus.OK);
-
     }
 
     @Transactional
@@ -65,9 +69,35 @@ public class UserServiceImpl implements UserService {
         if (userToUnFollow == null) {
             throw new CustomException("user not found");
         }
+
+        List<User> following = currentUser.getFollowing();
+        if (!following.contains(userToUnFollow)) {
+            throw new CustomException("can't unfollow, user is not followed by you");
+        }
+
         currentUser.getFollowing().remove(userToUnFollow);
         userToUnFollow.getFollowers().remove(currentUser);
-        return new ResponseEntity<>(new MessageResponse("UnFollowed successfully"), HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("Unfollowed successfully"), HttpStatus.OK);
+    }
+
+    @Transactional
+    @Override
+    public ResponseEntity<?> block(Principal principal, String username) {
+        User userToBlock = getByUsername(username);
+        User currentUser = getByEmail(principal.getName());
+
+        if (userToBlock == null)
+            throw new CustomException("user not found");
+
+        List<User> blocked = currentUser.getBlocked();
+
+        if (blocked.contains(userToBlock)) {
+            throw new CustomException("user is already blocked");
+        }
+
+        unfollow(principal, username);
+        blocked.add(userToBlock);
+        return new ResponseEntity<>(new MessageResponse("blocked successfully"), HttpStatus.OK);
     }
 
     @Override

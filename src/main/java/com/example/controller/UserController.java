@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dto.PostDto;
 import com.example.entity.User;
+import com.example.exception.CustomException;
 import com.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,11 @@ public class UserController {
     @DeleteMapping("/followers")
     public ResponseEntity<?> unFollow(Principal principal, @RequestParam String username) {
         return userService.unfollow(principal, username);
+    }
+
+    @PostMapping("/block")
+    public ResponseEntity<?> block(Principal principal, @RequestParam String username) {
+        return userService.block(principal, username);
     }
 
     @GetMapping("/feed")
