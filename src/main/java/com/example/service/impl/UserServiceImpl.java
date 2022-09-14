@@ -55,7 +55,12 @@ public class UserServiceImpl implements UserService {
         if (blocked.contains(userToFollow))
             throw new CustomException("can't follow, user is already blocked");
 
-        currentUser.getFollowing().add(userToFollow);
+        List<User> following = currentUser.getFollowing();
+        if (following.contains(userToFollow)) {
+            throw new CustomException("user is already followed by you");
+        }
+
+        following.add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
         return new ResponseEntity<>(new MessageResponse("Followed successfully"), HttpStatus.OK);
     }
@@ -75,7 +80,7 @@ public class UserServiceImpl implements UserService {
             throw new CustomException("can't unfollow, user is not followed by you");
         }
 
-        currentUser.getFollowing().remove(userToUnFollow);
+        following.remove(userToUnFollow);
         userToUnFollow.getFollowers().remove(currentUser);
         return new ResponseEntity<>(new MessageResponse("Unfollowed successfully"), HttpStatus.OK);
     }
