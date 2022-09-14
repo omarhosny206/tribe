@@ -32,4 +32,10 @@ public class PostController {
     {
         return postService.upVote(id);
     }
+
+    @PostMapping("/downvote/{id}")
+    public ResponseEntity<String>downvote(@PathVariable Long id)
+    {
+        return postService.downVote(id);
+    }
 }

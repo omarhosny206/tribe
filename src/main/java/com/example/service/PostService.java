@@ -15,4 +15,6 @@ public interface PostService {
     Optional<Post> getById(long id);
 
     public ResponseEntity<String>upVote(long id);
+
+    public ResponseEntity<String>downVote(long id);
 }
