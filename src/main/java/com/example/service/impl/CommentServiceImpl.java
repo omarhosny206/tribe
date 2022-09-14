@@ -10,7 +10,6 @@ import com.example.repository.UserRepository;
 import com.example.service.CommentService;
 import com.example.service.PostService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,20 +22,20 @@ import java.util.Optional;
 @Transactional
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
-    private final PostService postSerivce;
+    private final PostService postService;
     private final UserRepository userRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public CommentServiceImpl(CommentRepository commentRepository, PostService postSerivce, UserRepository userRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository, PostService postService, UserRepository userRepository, ModelMapper modelMapper) {
         this.commentRepository = commentRepository;
-        this.postSerivce = postSerivce;
+        this.postService = postService;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public ResponseEntity<String> save(Principal principal, CommentDto commentDto) {
-        Optional<Post> post = postSerivce.getById(commentDto.getPostId());
+        Optional<Post> post = postService.getById(commentDto.getPostId());
 
         if (post.isPresent()) {
             String username = principal.getName();

@@ -1,7 +1,5 @@
 package com.example.error;
 
-import java.util.Date;
-
 public class ErrorMessage {
     private int statusCode;
     private String message;
@@ -17,9 +15,7 @@ public class ErrorMessage {
     }
 
 
-
     public String getMessage() {
         return message;
     }
-
 }

@@ -3,9 +3,9 @@ package com.example.service.impl;
 import com.example.dto.LoginRequest;
 import com.example.dto.LoginResponse;
 import com.example.service.LoginService;
+import com.example.service.UserService;
 import com.example.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,13 +17,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class LoginServiceImpl implements LoginService {
     private final AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtUtil jwtUtil;
-    @Autowired
-    private UserServiceImpl userService;
+    private final JwtUtil jwtUtil;
+    private final UserService userService;
 
-    public LoginServiceImpl(AuthenticationManager authenticationManager) {
+    public LoginServiceImpl(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserService userService) {
         this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+        this.userService = userService;
     }
 
     @Override
@@ -36,10 +36,13 @@ public class LoginServiceImpl implements LoginService {
         } catch (Exception e) {
             return new ResponseEntity<>("invalid username or password", HttpStatus.BAD_REQUEST);
         }
+
         final UserDetails userDetails
                 = userService.loadUserByUsername(loginRequest.getEmail());
+
         final String token =
                 jwtUtil.generateToken(userDetails);
+
         return new ResponseEntity<>(new LoginResponse(loginRequest.getEmail(), token), HttpStatus.OK);
     }
 }
