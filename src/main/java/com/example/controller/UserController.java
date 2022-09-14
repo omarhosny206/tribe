@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.dto.PostDto;
 import com.example.entity.User;
-import com.example.exception.CustomException;
 import com.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -90,7 +90,6 @@ public class UserServiceImpl implements UserService {
             throw new CustomException("user not found");
 
         List<User> blocked = currentUser.getBlocked();
-
         if (blocked.contains(userToBlock)) {
             throw new CustomException("user is already blocked");
         }
