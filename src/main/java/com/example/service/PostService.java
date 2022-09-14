@@ -8,13 +8,13 @@ import java.security.Principal;
 import java.util.Optional;
 
 public interface PostService {
-    ResponseEntity<String> save(Principal principal, PostDto postDto);
+    ResponseEntity<?> save(Principal principal, PostDto postDto);
 
     ResponseEntity<?> deleteById(long id);
 
     Optional<Post> getById(long id);
 
-    public ResponseEntity<String>upVote(long id);
+    public ResponseEntity<?>upVote(long id);
 
-    public ResponseEntity<String>downVote(long id);
+    public ResponseEntity<?>downVote(long id);
 }

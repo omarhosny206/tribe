@@ -4,6 +4,7 @@ import com.example.dto.PostDto;
 import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.exception.ResourceNotFoundException;
+import com.example.message.MessageResponse;
 import com.example.repository.PostRepository;
 import com.example.repository.UserRepository;
 import com.example.service.PostService;
@@ -32,14 +33,14 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public ResponseEntity<String> save(Principal principal, PostDto postDto) {
+    public ResponseEntity<?> save(Principal principal, PostDto postDto) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
         Post post = modelMapper.map(postDto, Post.class);
         user.getPosts().add(post);
         post.setUser(user);
         postRepository.save(post);
-        return new ResponseEntity<>("post added successfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("post added successfully"), HttpStatus.OK);
     }
 
     @Override
@@ -50,11 +51,11 @@ public class PostServiceImp implements PostService {
             throw new ResourceNotFoundException("post not found");
         } else {
             postRepository.delete(post);
-            return new ResponseEntity<>("post deleted", HttpStatus.OK);
+            return new ResponseEntity<>(new MessageResponse("post deleted"), HttpStatus.OK);
         }
     }
     @Override
-    public ResponseEntity<String>upVote(long id)
+    public ResponseEntity<?>upVote(long id)
     {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
@@ -63,11 +64,11 @@ public class PostServiceImp implements PostService {
         }
         else {
             post.setVotes(post.getVotes()+1);
-            return new ResponseEntity<>("upvoted successfully", HttpStatus.OK);
+            return new ResponseEntity<>(new MessageResponse("upvoted successfully"), HttpStatus.OK);
         }
     }
     @Override
-    public ResponseEntity<String>downVote(long id)
+    public ResponseEntity<?>downVote(long id)
     {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
@@ -78,10 +79,10 @@ public class PostServiceImp implements PostService {
             if(post.getVotes()>0)
             {
                 post.setVotes(post.getVotes()-1);
-                return new ResponseEntity<>("downvoted successfully", HttpStatus.OK);
+                return new ResponseEntity<>(new MessageResponse("downvoted successfully"), HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>("post has 0 votes", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new MessageResponse("post has 0 votes"), HttpStatus.BAD_REQUEST);
     }
 
     @Override

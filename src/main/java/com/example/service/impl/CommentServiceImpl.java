@@ -5,6 +5,7 @@ import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.exception.ResourceNotFoundException;
+import com.example.message.MessageResponse;
 import com.example.repository.CommentRepository;
 import com.example.repository.UserRepository;
 import com.example.service.CommentService;
@@ -34,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<String> save(Principal principal, CommentDto commentDto) {
+    public ResponseEntity<?> save(Principal principal, CommentDto commentDto) {
         Optional<Post> post = postService.getById(commentDto.getPostId());
 
         if (post.isPresent()) {
@@ -44,20 +45,20 @@ public class CommentServiceImpl implements CommentService {
             comment.setUser(user);
             comment.setPost(post.get());
             commentRepository.save(comment);
-            return new ResponseEntity<>("Comment created successfully", HttpStatus.CREATED);
+            return new ResponseEntity<>(new MessageResponse("Comment created successfully"), HttpStatus.CREATED);
 
         }
-        return new ResponseEntity<>("No post to associate with", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new MessageResponse("No post to associate with"), HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public ResponseEntity<String> deleteById(long id) {
+    public ResponseEntity<?> deleteById(long id) {
         Comment comment = commentRepository.findById(id).orElse(null);
 
         if (comment == null)
             throw new ResourceNotFoundException("Not found comment with id = " + id);
 
         commentRepository.deleteById(id);
-        return new ResponseEntity<>("Comment deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("Comment deleted successfully"), HttpStatus.OK);
     }
 }

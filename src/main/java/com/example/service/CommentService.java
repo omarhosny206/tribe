@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.security.Principal;
 
 public interface CommentService {
-    public ResponseEntity<String> save(Principal principal, CommentDto commentDto);
+    public ResponseEntity<?> save(Principal principal, CommentDto commentDto);
 
-    ResponseEntity<String> deleteById(long id);
+    ResponseEntity<?> deleteById(long id);
 }

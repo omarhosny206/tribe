@@ -18,12 +18,12 @@ public class CommentController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> save(Principal principal, @Valid @RequestBody CommentDto commentDto) {
+    public ResponseEntity<?> save(Principal principal, @Valid @RequestBody CommentDto commentDto) {
         return commentService.save(principal, commentDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable long id) {
+    public ResponseEntity<?> deleteById(@PathVariable long id) {
         return commentService.deleteById(id);
     }
 }

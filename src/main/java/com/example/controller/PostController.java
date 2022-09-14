@@ -18,7 +18,7 @@ public class PostController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> add(Principal principal, @Valid @RequestBody PostDto postDto) {
+    public ResponseEntity<?> add(Principal principal, @Valid @RequestBody PostDto postDto) {
         return postService.save(principal, postDto);
     }
 
@@ -28,13 +28,13 @@ public class PostController {
     }
 
     @PostMapping("/upvote/{id}")
-    public ResponseEntity<String>upvote(@PathVariable Long id)
+    public ResponseEntity<?>upvote(@PathVariable Long id)
     {
         return postService.upVote(id);
     }
 
     @PostMapping("/downvote/{id}")
-    public ResponseEntity<String>downvote(@PathVariable Long id)
+    public ResponseEntity<?>downvote(@PathVariable Long id)
     {
         return postService.downVote(id);
     }

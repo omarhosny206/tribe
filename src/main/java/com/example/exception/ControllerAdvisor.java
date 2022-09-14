@@ -1,6 +1,6 @@
 package com.example.exception;
 
-import com.example.error.ErrorMessage;
+import com.example.message.MessageResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +30,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorMessage> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
-        ErrorMessage message = new ErrorMessage(
-                HttpStatus.BAD_REQUEST.value(),
+    public ResponseEntity<MessageResponse> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+        MessageResponse message = new MessageResponse(
                 ex.getMessage()
         );
 
@@ -40,9 +39,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(UserAlreadyFoundException.class)
-    public ResponseEntity<ErrorMessage> userAlreadyFoundException(UserAlreadyFoundException ex, WebRequest request) {
-        ErrorMessage message = new ErrorMessage(
-                HttpStatus.BAD_REQUEST.value(),
+    public ResponseEntity<MessageResponse> userAlreadyFoundException(UserAlreadyFoundException ex, WebRequest request) {
+        MessageResponse message = new MessageResponse(
                 ex.getMessage()
         );
 
@@ -50,12 +48,11 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
-        ErrorMessage message = new ErrorMessage(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+    public ResponseEntity<MessageResponse> globalExceptionHandler(Exception ex, WebRequest request) {
+        MessageResponse message = new MessageResponse(
                 ex.getMessage()
         );
 
-        return new ResponseEntity<ErrorMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<MessageResponse>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

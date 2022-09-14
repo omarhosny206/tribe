@@ -4,6 +4,7 @@ import com.example.dto.CommentDto;
 import com.example.dto.PostDto;
 import com.example.entity.User;
 import com.example.exception.ResourceNotFoundException;
+import com.example.message.MessageResponse;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public ResponseEntity<String> follow(Principal principal, String username) {
+    public ResponseEntity<?> follow(Principal principal, String username) {
         User currentUser = getByEmail(principal.getName());
         User userToFollow = getByUsername(username);
 
@@ -51,13 +52,13 @@ public class UserServiceImpl implements UserService {
         }
         currentUser.getFollowing().add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
-        return new ResponseEntity<>("Followed successfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("Followed successfully"), HttpStatus.OK);
 
     }
 
     @Transactional
     @Override
-    public ResponseEntity<String> unfollow(Principal principal, String username) {
+    public ResponseEntity<?> unfollow(Principal principal, String username) {
         User currentUser = getByEmail(principal.getName());
         User userToUnFollow = getByUsername(username);
 
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
         }
         currentUser.getFollowing().remove(userToUnFollow);
         userToUnFollow.getFollowers().remove(currentUser);
-        return new ResponseEntity<>("UnFollowed successfully", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("UnFollowed successfully"), HttpStatus.OK);
     }
 
     @Override

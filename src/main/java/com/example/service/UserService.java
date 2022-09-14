@@ -19,8 +19,8 @@ public interface UserService extends UserDetailsService {
     ResponseEntity<List<PostDto>> getFeed(Principal principal);
 
     @Transactional
-    ResponseEntity<String> follow(Principal principal, String username);
+    ResponseEntity<?> follow(Principal principal, String username);
 
     @Transactional
-    ResponseEntity<String> unfollow(Principal principal, String username);
+    ResponseEntity<?> unfollow(Principal principal, String username);
 }

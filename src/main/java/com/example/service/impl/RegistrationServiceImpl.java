@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import com.example.entity.User;
 import com.example.exception.UserAlreadyFoundException;
+import com.example.message.MessageResponse;
 import com.example.repository.UserRepository;
 import com.example.service.RegistrationService;
 import com.example.service.UserService;
@@ -23,7 +24,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public ResponseEntity<String> register(User user) {
+    public ResponseEntity<?> register(User user) {
         User userByEmail = userService.getByEmail(user.getEmail());
         User userByUsername = userService.getByUsername(user.getUsername());
 
@@ -41,6 +42,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return new ResponseEntity<>("user registered", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("user registered successfully"), HttpStatus.OK);
     }
 }

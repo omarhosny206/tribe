@@ -34,12 +34,12 @@ public class UserController {
     }
 
     @PostMapping("/followers")
-    public ResponseEntity<String> follow(Principal principal, @RequestParam String username) {
+    public ResponseEntity<?> follow(Principal principal, @RequestParam String username) {
         return userService.follow(principal, username);
     }
 
     @DeleteMapping("/followers")
-    public ResponseEntity<String> unFollow(Principal principal, @RequestParam String username) {
+    public ResponseEntity<?> unFollow(Principal principal, @RequestParam String username) {
         return userService.unfollow(principal, username);
     }
 

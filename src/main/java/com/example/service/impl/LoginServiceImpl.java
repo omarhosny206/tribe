@@ -2,10 +2,12 @@ package com.example.service.impl;
 
 import com.example.dto.LoginRequest;
 import com.example.dto.LoginResponse;
+import com.example.message.MessageResponse;
 import com.example.service.LoginService;
 import com.example.service.UserService;
 import com.example.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.bridge.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
                     loginRequest.getPassword()
             ));
         } catch (Exception e) {
-            return new ResponseEntity<>("invalid username or password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MessageResponse("invalid username or password"), HttpStatus.BAD_REQUEST);
         }
 
         final UserDetails userDetails
