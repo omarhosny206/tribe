@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dto.CommentDto;
 import com.example.dto.PostDto;
 import com.example.entity.User;
-import com.example.exception.NotFoundException;
+import com.example.exception.CustomException;
 import com.example.response.MessageResponse;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         User userToFollow = getByUsername(username);
 
         if (userToFollow == null) {
-            throw new NotFoundException("user not found");
+            throw new CustomException("user not found");
         }
         currentUser.getFollowing().add(userToFollow);
         userToFollow.getFollowers().add(currentUser);
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
         User userToUnFollow = getByUsername(username);
 
         if (userToUnFollow == null) {
-            throw new NotFoundException("user not found");
+            throw new CustomException("user not found");
         }
         currentUser.getFollowing().remove(userToUnFollow);
         userToUnFollow.getFollowers().remove(currentUser);

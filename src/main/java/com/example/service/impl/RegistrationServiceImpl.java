@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.User;
-import com.example.exception.NotFoundException;
+import com.example.exception.CustomException;
 import com.example.response.MessageResponse;
 import com.example.repository.UserRepository;
 import com.example.service.RegistrationService;
@@ -29,15 +29,15 @@ public class RegistrationServiceImpl implements RegistrationService {
         User userByUsername = userService.getByUsername(user.getUsername());
 
         if (userByEmail !=  null && userByUsername != null) {
-            throw new NotFoundException("Email and Username are already taken");
+            throw new CustomException("Email and Username are already taken");
         }
 
         if (userByEmail != null) {
-            throw new NotFoundException("Email is already taken");
+            throw new CustomException("Email is already taken");
         }
 
         if (userByUsername != null) {
-            throw new NotFoundException("Username is already taken");
+            throw new CustomException("Username is already taken");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

@@ -3,7 +3,7 @@ package com.example.service.impl;
 import com.example.dto.PostDto;
 import com.example.entity.Post;
 import com.example.entity.User;
-import com.example.exception.NotFoundException;
+import com.example.exception.CustomException;
 import com.example.response.MessageResponse;
 import com.example.repository.PostRepository;
 import com.example.repository.UserRepository;
@@ -48,7 +48,7 @@ public class PostServiceImp implements PostService {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
-            throw new NotFoundException("post not found");
+            throw new CustomException("post not found");
         } else {
             postRepository.delete(post);
             return new ResponseEntity<>(new MessageResponse("post deleted"), HttpStatus.OK);
@@ -60,7 +60,7 @@ public class PostServiceImp implements PostService {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
-            throw new NotFoundException("post not found");
+            throw new CustomException("post not found");
         }
         else {
             post.setVotes(post.getVotes()+1);
@@ -73,7 +73,7 @@ public class PostServiceImp implements PostService {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
-            throw new NotFoundException("post not found");
+            throw new CustomException("post not found");
         }
         else {
             if(post.getVotes()>0)
