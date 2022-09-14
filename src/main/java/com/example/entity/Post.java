@@ -36,5 +36,6 @@ public class Post {
     private List<Comment> comments;
 
     @Column(name = "votes")
+    @ColumnDefault("0")
     private Long votes = 0L;
 }

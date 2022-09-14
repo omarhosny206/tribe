@@ -30,11 +30,11 @@ public class CommentController {
 
     @PostMapping("/upvote/{id}")
     public ResponseEntity<?> upvote(@PathVariable Long id) {
-        return commentService.upVote(id);
+        return commentService.upvote(id);
     }
 
     @PostMapping("/downvote/{id}")
     public ResponseEntity<?> downvote(@PathVariable Long id) {
-        return commentService.downVote(id);
+        return commentService.downvote(id);
     }
 }

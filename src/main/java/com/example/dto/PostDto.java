@@ -18,6 +18,8 @@ public class PostDto {
     @NotEmpty
     private String content;
 
+    private Long votes = 0L;
+
     private Date date = new Date();
 
     @JsonProperty("comments")

@@ -48,6 +48,7 @@ public class CommentServiceImpl implements CommentService {
             return new ResponseEntity<>(new MessageResponse("Comment created successfully"), HttpStatus.CREATED);
 
         }
+
         return new ResponseEntity<>(new MessageResponse("No post to associate with"), HttpStatus.BAD_REQUEST);
     }
 
@@ -63,19 +64,21 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<?> upVote(long id) {
+    public ResponseEntity<?> upvote(long id) {
         Comment comment = commentRepository.findById(id).orElse(null);
+
         if (comment == null) {
             throw new CustomException("comment not found");
-        } else {
-            comment.setVotes(comment.getVotes() + 1);
-            return new ResponseEntity<>(new MessageResponse("upvoted successfully"), HttpStatus.OK);
         }
+
+        comment.setVotes(comment.getVotes() + 1);
+        return new ResponseEntity<>(new MessageResponse("upvoted successfully"), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<?> downVote(long id) {
+    public ResponseEntity<?> downvote(long id) {
         Comment comment = commentRepository.findById(id).orElse(null);
+
         if (comment == null) {
             throw new CustomException("comment not found");
         }

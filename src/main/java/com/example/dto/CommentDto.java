@@ -20,7 +20,7 @@ public class CommentDto {
     @NotEmpty
     private String content;
 
-    private Date date = new Date();
-
     private Long votes = 0L;
+
+    private Date date = new Date();
 }

@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-public class SocialMediaAppApplication {
+public class TribeApplication {
 
     public static void main(String... args) {
-        SpringApplication.run(SocialMediaAppApplication.class, args);
+        SpringApplication.run(TribeApplication.class, args);
     }
 
     @Bean

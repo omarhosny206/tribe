@@ -10,7 +10,7 @@ public interface CommentService {
 
     ResponseEntity<?> deleteById(long id);
 
-    public ResponseEntity<?> downVote(long id);
+    ResponseEntity<?> upvote(long id);
 
-    public ResponseEntity<?> upVote(long id);
+    ResponseEntity<?> downvote(long id);
 }

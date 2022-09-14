@@ -36,5 +36,6 @@ public class Comment {
     private User user;
 
     @Column(name = "votes")
+    @ColumnDefault("0")
     private Long votes = 0L;
 }
