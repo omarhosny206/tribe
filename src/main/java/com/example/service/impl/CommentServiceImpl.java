@@ -5,7 +5,7 @@ import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.exception.ResourceNotFoundException;
-import com.example.message.MessageResponse;
+import com.example.response.MessageResponse;
 import com.example.repository.CommentRepository;
 import com.example.repository.UserRepository;
 import com.example.service.CommentService;

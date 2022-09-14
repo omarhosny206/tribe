@@ -2,7 +2,7 @@ package com.example.service.impl;
 
 import com.example.entity.User;
 import com.example.exception.UserAlreadyFoundException;
-import com.example.message.MessageResponse;
+import com.example.response.MessageResponse;
 import com.example.repository.UserRepository;
 import com.example.service.RegistrationService;
 import com.example.service.UserService;

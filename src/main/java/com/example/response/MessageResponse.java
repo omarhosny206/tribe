@@ -1,4 +1,4 @@
-package com.example.message;
+package com.example.response;
 
 public class MessageResponse {
     private int statusCode;
