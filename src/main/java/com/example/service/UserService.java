@@ -18,6 +18,8 @@ public interface UserService extends UserDetailsService {
 
     ResponseEntity<List<PostDto>> getFeed(Principal principal);
 
+    ResponseEntity<List<PostDto>> getFeed(Principal principal, String username);
+
     @Transactional
     ResponseEntity<?> follow(Principal principal, String username);
 

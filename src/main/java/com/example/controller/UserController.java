@@ -52,4 +52,9 @@ public class UserController {
     public ResponseEntity<List<PostDto>> getFeed(Principal principal) {
         return userService.getFeed(principal);
     }
+
+    @GetMapping("/feed/{username}")
+    public ResponseEntity<List<PostDto>> getFeed(Principal principal, @PathVariable String username) {
+        return userService.getFeed(principal, username);
+    }
 }

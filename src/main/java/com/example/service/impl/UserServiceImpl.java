@@ -51,9 +51,11 @@ public class UserServiceImpl implements UserService {
             throw new CustomException("user not found");
         }
 
-        List<User> blocked = currentUser.getBlocked();
-        if (blocked.contains(userToFollow))
-            throw new CustomException("can't follow, user is already blocked");
+        if (currentUser.getBlocked().contains(userToFollow))
+            throw new CustomException("can't follow, user is blocked by you");
+
+        if (userToFollow.getBlocked().contains(currentUser))
+            throw new CustomException("can't follow, user blocked you");
 
         List<User> following = currentUser.getFollowing();
         if (following.contains(userToFollow)) {
@@ -85,21 +87,38 @@ public class UserServiceImpl implements UserService {
         return new ResponseEntity<>(new MessageResponse("Unfollowed successfully"), HttpStatus.OK);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public ResponseEntity<?> block(Principal principal, String username) {
         User userToBlock = getByUsername(username);
         User currentUser = getByEmail(principal.getName());
 
         if (userToBlock == null)
-            throw new CustomException("user not found");
+            throw new CustomException("can't block, user not found");
 
         List<User> blocked = currentUser.getBlocked();
         if (blocked.contains(userToBlock)) {
-            throw new CustomException("user is already blocked");
+            throw new CustomException("can't block, user is already blocked");
         }
 
-        unfollow(principal, username);
+        if (userToBlock.getBlocked().contains(currentUser)) {
+            throw new CustomException("can't block, user blocked you");
+        }
+
+        List<User> currentUserFollowing = currentUser.getFollowing();
+        List<User> userToBlockFollowing = userToBlock.getFollowing();
+        System.out.println("current = " + currentUserFollowing.size());
+        System.out.println("blocked = " + userToBlockFollowing.size());
+        if (currentUserFollowing.contains(userToBlock)) {
+            System.out.println("11111111111111111");
+            unfollow(principal, username);
+        } else System.out.println("XXXXXXXXXXXXXXXXXXX");
+        if (userToBlockFollowing.contains(currentUser)) {
+            System.out.println("22222222222222222");
+            userToBlockFollowing.remove(currentUser);
+            currentUser.getFollowers().remove(userToBlock);
+        } else System.out.println("YYYYYYYYYYYYYYYYYYY");
+
         blocked.add(userToBlock);
         return new ResponseEntity<>(new MessageResponse("blocked successfully"), HttpStatus.OK);
     }
@@ -107,9 +126,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<List<PostDto>> getFeed(Principal principal) {
         List<PostDto> result = new ArrayList<>();
-        User user = getByEmail(principal.getName());
+        User currentUser = getByEmail(principal.getName());
 
-        user.getFollowing().forEach(following -> {
+        currentUser.getFollowing().forEach(following -> {
             following.getPosts().forEach(post -> {
                 List<CommentDto> commentsDtos = post.getComments().stream()
                         .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getVotes(), comment.getDate()))
@@ -118,6 +137,33 @@ public class UserServiceImpl implements UserService {
                 PostDto postDto = new PostDto(following.getUsername(), post.getContent(), post.getVotes(), post.getDate(), commentsDtos);
                 result.add(postDto);
             });
+        });
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<PostDto>> getFeed(Principal principal, String username) {
+        List<PostDto> result = new ArrayList<>();
+        User userToSearch = getByUsername(username);
+        User currentUser = getByEmail(principal.getName());
+
+        if (userToSearch == null)
+            throw new CustomException("user not found");
+
+        if (currentUser.getBlocked().contains(userToSearch))
+            throw new CustomException("can't get feed, user is blocked by you");
+
+        if (userToSearch.getBlocked().contains(currentUser))
+            throw new CustomException("can't get feed, user blocked you");
+
+        userToSearch.getPosts().forEach(post -> {
+            List<CommentDto> commentsDtos = post.getComments().stream()
+                    .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getVotes(), comment.getDate()))
+                    .toList();
+
+            PostDto postDto = new PostDto(userToSearch.getUsername(), post.getContent(), post.getVotes(), post.getDate(), commentsDtos);
+            result.add(postDto);
         });
 
         return new ResponseEntity<>(result, HttpStatus.OK);
