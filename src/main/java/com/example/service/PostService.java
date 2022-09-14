@@ -14,7 +14,7 @@ public interface PostService {
 
     Optional<Post> getById(long id);
 
-    public ResponseEntity<?>upVote(long id);
+    public ResponseEntity<?> upVote(long id);
 
-    public ResponseEntity<?>downVote(long id);
+    public ResponseEntity<?> downVote(long id);
 }

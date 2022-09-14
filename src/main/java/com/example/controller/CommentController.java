@@ -19,11 +19,22 @@ public class CommentController {
 
     @PostMapping("/")
     public ResponseEntity<?> save(Principal principal, @Valid @RequestBody CommentDto commentDto) {
+        System.out.println(commentDto.getVotes());
         return commentService.save(principal, commentDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable long id) {
         return commentService.deleteById(id);
+    }
+
+    @PostMapping("/upvote/{id}")
+    public ResponseEntity<?> upvote(@PathVariable Long id) {
+        return commentService.upVote(id);
+    }
+
+    @PostMapping("/downvote/{id}")
+    public ResponseEntity<?> downvote(@PathVariable Long id) {
+        return commentService.downVote(id);
     }
 }

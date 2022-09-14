@@ -2,8 +2,8 @@ package com.example.service.impl;
 
 import com.example.entity.User;
 import com.example.exception.CustomException;
-import com.example.response.MessageResponse;
 import com.example.repository.UserRepository;
+import com.example.response.MessageResponse;
 import com.example.service.RegistrationService;
 import com.example.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         User userByEmail = userService.getByEmail(user.getEmail());
         User userByUsername = userService.getByUsername(user.getUsername());
 
-        if (userByEmail !=  null && userByUsername != null) {
+        if (userByEmail != null && userByUsername != null) {
             throw new CustomException("Email and Username are already taken");
         }
 

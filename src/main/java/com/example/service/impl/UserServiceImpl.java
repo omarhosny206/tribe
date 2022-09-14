@@ -4,8 +4,8 @@ import com.example.dto.CommentDto;
 import com.example.dto.PostDto;
 import com.example.entity.User;
 import com.example.exception.CustomException;
-import com.example.response.MessageResponse;
 import com.example.repository.UserRepository;
+import com.example.response.MessageResponse;
 import com.example.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
         user.getFollowing().forEach(following -> {
             following.getPosts().forEach(post -> {
                 List<CommentDto> commentsDtos = post.getComments().stream()
-                        .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getDate()))
+                        .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getDate(), comment.getVotes()))
                         .toList();
 
                 PostDto postDto = new PostDto(following.getUsername(), post.getContent(), post.getDate(), commentsDtos);

@@ -35,6 +35,6 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
-    @Column(name="votes")
-    private Long votes=0L;
+    @Column(name = "votes")
+    private Long votes = 0L;
 }

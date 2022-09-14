@@ -21,4 +21,6 @@ public class CommentDto {
     private String content;
 
     private Date date = new Date();
+
+    private Long votes = 0L;
 }

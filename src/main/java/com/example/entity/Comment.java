@@ -34,4 +34,7 @@ public class Comment {
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
+
+    @Column(name = "votes")
+    private Long votes = 0L;
 }

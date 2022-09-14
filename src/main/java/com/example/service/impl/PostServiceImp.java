@@ -4,9 +4,9 @@ import com.example.dto.PostDto;
 import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.exception.CustomException;
-import com.example.response.MessageResponse;
 import com.example.repository.PostRepository;
 import com.example.repository.UserRepository;
+import com.example.response.MessageResponse;
 import com.example.service.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -54,35 +54,31 @@ public class PostServiceImp implements PostService {
             return new ResponseEntity<>(new MessageResponse("post deleted"), HttpStatus.OK);
         }
     }
+
     @Override
-    public ResponseEntity<?>upVote(long id)
-    {
+    public ResponseEntity<?> upVote(long id) {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
             throw new CustomException("post not found");
-        }
-        else {
-            post.setVotes(post.getVotes()+1);
+        } else {
+            post.setVotes(post.getVotes() + 1);
             return new ResponseEntity<>(new MessageResponse("upvoted successfully"), HttpStatus.OK);
         }
     }
+
     @Override
-    public ResponseEntity<?>downVote(long id)
-    {
+    public ResponseEntity<?> downVote(long id) {
         System.out.println("post id is" + id);
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
             throw new CustomException("post not found");
         }
-        else {
-            if(post.getVotes()>0)
-            {
-                post.setVotes(post.getVotes()-1);
-                return new ResponseEntity<>(new MessageResponse("downvoted successfully"), HttpStatus.OK);
-            }
+        if (post.getVotes() == 0) {
+            throw new CustomException("can't downvote post, post has 0 votes");
         }
-        return new ResponseEntity<>(new MessageResponse("post has 0 votes"), HttpStatus.BAD_REQUEST);
+        post.setVotes(post.getVotes() - 1);
+        return new ResponseEntity<>(new MessageResponse("downvoted successfully"), HttpStatus.OK);
     }
 
     @Override

@@ -5,9 +5,9 @@ import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
 import com.example.exception.CustomException;
-import com.example.response.MessageResponse;
 import com.example.repository.CommentRepository;
 import com.example.repository.UserRepository;
+import com.example.response.MessageResponse;
 import com.example.service.CommentService;
 import com.example.service.PostService;
 import org.modelmapper.ModelMapper;
@@ -60,5 +60,31 @@ public class CommentServiceImpl implements CommentService {
 
         commentRepository.deleteById(id);
         return new ResponseEntity<>(new MessageResponse("Comment deleted successfully"), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> upVote(long id) {
+        Comment comment = commentRepository.findById(id).orElse(null);
+        if (comment == null) {
+            throw new CustomException("comment not found");
+        } else {
+            comment.setVotes(comment.getVotes() + 1);
+            return new ResponseEntity<>(new MessageResponse("upvoted successfully"), HttpStatus.OK);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> downVote(long id) {
+        Comment comment = commentRepository.findById(id).orElse(null);
+        if (comment == null) {
+            throw new CustomException("comment not found");
+        }
+
+        if (comment.getVotes() == 0) {
+            throw new CustomException("can't downvote comment, comment has 0 votes");
+        }
+
+        comment.setVotes(comment.getVotes() - 1);
+        return new ResponseEntity<>(new MessageResponse("downvoted successfully"), HttpStatus.OK);
     }
 }
