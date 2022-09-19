@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -107,17 +108,15 @@ public class UserServiceImpl implements UserService {
 
         List<User> currentUserFollowing = currentUser.getFollowing();
         List<User> userToBlockFollowing = userToBlock.getFollowing();
-        System.out.println("current = " + currentUserFollowing.size());
-        System.out.println("blocked = " + userToBlockFollowing.size());
+
         if (currentUserFollowing.contains(userToBlock)) {
-            System.out.println("11111111111111111");
             unfollow(principal, username);
-        } else System.out.println("XXXXXXXXXXXXXXXXXXX");
+        }
+
         if (userToBlockFollowing.contains(currentUser)) {
-            System.out.println("22222222222222222");
             userToBlockFollowing.remove(currentUser);
             currentUser.getFollowers().remove(userToBlock);
-        } else System.out.println("YYYYYYYYYYYYYYYYYYY");
+        }
 
         blocked.add(userToBlock);
         return new ResponseEntity<>(new MessageResponse("blocked successfully"), HttpStatus.OK);
@@ -132,6 +131,7 @@ public class UserServiceImpl implements UserService {
             following.getPosts().forEach(post -> {
                 List<CommentDto> commentsDtos = post.getComments().stream()
                         .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getVotes(), comment.getDate()))
+                        .sorted((a, b) -> (int) (b.getVotes() - a.getVotes()))
                         .toList();
 
                 PostDto postDto = new PostDto(following.getUsername(), post.getContent(), post.getVotes(), post.getDate(), commentsDtos);
@@ -139,6 +139,7 @@ public class UserServiceImpl implements UserService {
             });
         });
 
+        Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -160,12 +161,14 @@ public class UserServiceImpl implements UserService {
         userToSearch.getPosts().forEach(post -> {
             List<CommentDto> commentsDtos = post.getComments().stream()
                     .map(comment -> new CommentDto(comment.getUser().getUsername(), post.getId(), comment.getContent(), comment.getVotes(), comment.getDate()))
+                    .sorted((a, b) -> (int) (b.getVotes() - a.getVotes()))
                     .toList();
 
             PostDto postDto = new PostDto(userToSearch.getUsername(), post.getContent(), post.getVotes(), post.getDate(), commentsDtos);
             result.add(postDto);
         });
 
+        Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
