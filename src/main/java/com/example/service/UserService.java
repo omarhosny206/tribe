@@ -28,4 +28,7 @@ public interface UserService extends UserDetailsService {
 
     @Transactional
     ResponseEntity<?> block(Principal principal, String username);
+
+    @Transactional
+    public ResponseEntity<?> unblock(Principal principal, String username);
 }

@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="tribe" />
         <module name="social-media-app" />
+        <module name="Tribe" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Tribe" options="-parameters" />
       <module name="social-media-app" options="-parameters" />
       <module name="tribe" options="-parameters" />
     </option>

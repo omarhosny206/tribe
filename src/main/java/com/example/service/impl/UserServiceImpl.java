@@ -123,6 +123,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
+    public ResponseEntity<?> unblock(Principal principal, String username)
+    {
+        User currentUser = getByEmail(principal.getName());
+        User userToUnBlock=getByUsername(username);
+        if(!(currentUser.getBlocked().contains(userToUnBlock)))
+        {
+            throw new CustomException("user isn't blocked");
+        }
+        List<User> blocked = currentUser.getBlocked();
+        currentUser.getBlocked().remove(userToUnBlock);
+        return new ResponseEntity<>(new MessageResponse("unblocked successfully"), HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<List<PostDto>> getFeed(Principal principal) {
         List<PostDto> result = new ArrayList<>();
         User currentUser = getByEmail(principal.getName());

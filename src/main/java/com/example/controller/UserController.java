@@ -48,6 +48,11 @@ public class UserController {
         return userService.block(principal, username);
     }
 
+    @PostMapping("/unblock")
+    public ResponseEntity<?> unblock(Principal principal, @RequestParam String username) {
+        return userService.unblock(principal, username);
+    }
+
     @GetMapping("/feed")
     public ResponseEntity<List<PostDto>> getFeed(Principal principal) {
         return userService.getFeed(principal);
