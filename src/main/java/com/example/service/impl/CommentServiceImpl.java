@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.dto.CommentDto;
+import com.example.dto.ContentDto;
 import com.example.entity.Comment;
 import com.example.entity.Post;
 import com.example.entity.User;
@@ -92,7 +93,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<?> edit(Principal principal,long id,String content)
+    public ResponseEntity<?> edit(Principal principal, long id, ContentDto content)
     {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
@@ -108,7 +109,7 @@ public class CommentServiceImpl implements CommentService {
             throw new CustomException("you didn't create this comment");
         }
 
-        comment.setContent(content);
+        comment.setContent(content.getContent());
         return new ResponseEntity<>(new MessageResponse("comment edited successfully"), HttpStatus.OK);
     }
 

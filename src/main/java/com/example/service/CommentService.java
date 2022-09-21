@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.CommentDto;
+import com.example.dto.ContentDto;
 import org.springframework.http.ResponseEntity;
 
 import java.security.Principal;
@@ -14,5 +15,5 @@ public interface CommentService {
 
     ResponseEntity<?> downvote(long id);
 
-    public ResponseEntity<?> edit(Principal principal,long id,String content);
+    public ResponseEntity<?> edit(Principal principal, long id, ContentDto content);
 }

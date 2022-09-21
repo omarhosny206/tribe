@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.dto.CommentDto;
+import com.example.dto.ContentDto;
 import com.example.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +40,8 @@ public class CommentController {
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<?> edit(Principal principal,@PathVariable Long id,@RequestBody String content)
+    public ResponseEntity<?> edit(Principal principal,@PathVariable Long id,@RequestBody ContentDto content)
     {
-        System.out.println(content.toString());
         return commentService.edit(principal,id,content);
     }
 }
