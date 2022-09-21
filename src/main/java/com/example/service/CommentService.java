@@ -13,4 +13,6 @@ public interface CommentService {
     ResponseEntity<?> upvote(long id);
 
     ResponseEntity<?> downvote(long id);
+
+    public ResponseEntity<?> edit(Principal principal,long id,String content);
 }

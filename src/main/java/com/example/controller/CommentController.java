@@ -37,4 +37,11 @@ public class CommentController {
     public ResponseEntity<?> downvote(@PathVariable Long id) {
         return commentService.downvote(id);
     }
+
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<?> edit(Principal principal,@PathVariable Long id,@RequestBody String content)
+    {
+        System.out.println(content.toString());
+        return commentService.edit(principal,id,content);
+    }
 }

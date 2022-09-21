@@ -90,4 +90,26 @@ public class CommentServiceImpl implements CommentService {
         comment.setVotes(comment.getVotes() - 1);
         return new ResponseEntity<>(new MessageResponse("downvoted successfully"), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<?> edit(Principal principal,long id,String content)
+    {
+        String username = principal.getName();
+        User user = userRepository.findByEmail(username);
+        Comment comment = commentRepository.findById(id).orElse(null);
+
+        if(comment==null)
+        {
+            throw new CustomException("comment not found");
+        }
+
+        if(!(user.getComments().contains(comment)))
+        {
+            throw new CustomException("you didn't create this comment");
+        }
+
+        comment.setContent(content);
+        return new ResponseEntity<>(new MessageResponse("comment edited successfully"), HttpStatus.OK);
+    }
+
 }
