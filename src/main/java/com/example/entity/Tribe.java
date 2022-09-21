@@ -14,11 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 public class Tribe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
+
     @ManyToMany
     private List<User> users;
+
     @OneToMany(mappedBy = "tribe")
     private List<Post>posts;
 }
