@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false)
     private String firstName;
 
+    @ManyToMany
+    private List<Tribe> tribes;
+
     @NotEmpty
     @Column(nullable = false)
     private String lastName;

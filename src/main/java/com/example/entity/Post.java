@@ -38,4 +38,7 @@ public class Post {
     @Column(name = "votes")
     @ColumnDefault("0")
     private Long votes = 0L;
+
+    @ManyToOne
+    private Tribe tribe;
 }
