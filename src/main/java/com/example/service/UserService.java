@@ -18,6 +18,7 @@ public interface UserService extends UserDetailsService {
 
     ResponseEntity<List<PostDto>> getFeed(Principal principal);
 
+    @Transactional
     ResponseEntity<List<PostDto>> getFeed(Principal principal, String username);
 
     @Transactional

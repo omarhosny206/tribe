@@ -62,4 +62,5 @@ public class UserController {
     public ResponseEntity<List<PostDto>> getFeed(Principal principal, @PathVariable String username) {
         return userService.getFeed(principal, username);
     }
+
 }

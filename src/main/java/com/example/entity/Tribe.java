@@ -20,6 +20,9 @@ public class Tribe {
     private String name;
 
     @ManyToMany
+    @JoinTable(name = "user_tribes",
+            joinColumns = @JoinColumn(name = "tribe_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
 
     @OneToMany(mappedBy = "tribe")

@@ -25,8 +25,6 @@ public class User {
     @Column(nullable = false)
     private String firstName;
 
-    @ManyToMany
-    private List<Tribe> tribes;
 
     @NotEmpty
     @Column(nullable = false)
@@ -68,5 +66,11 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "blocked_id"))
     private List<User> blocked;
+
+    @ManyToMany
+    @JoinTable(name = "user_tribes",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tribe_id"))
+    private List<Tribe> tribes;
 
 }

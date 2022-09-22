@@ -1,9 +1,12 @@
 package com.example.service.impl;
 
 import com.example.dto.CommentDto;
+import com.example.dto.HistoryId;
 import com.example.dto.PostDto;
+import com.example.entity.History;
 import com.example.entity.User;
 import com.example.exception.CustomException;
+import com.example.repository.HistoryRepository;
 import com.example.repository.UserRepository;
 import com.example.response.MessageResponse;
 import com.example.service.UserService;
@@ -22,9 +25,10 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
+    private final HistoryRepository historyRepository;
+    public UserServiceImpl(UserRepository userRepository, HistoryRepository historyRepository) {
         this.userRepository = userRepository;
+        this.historyRepository = historyRepository;
     }
 
     @Override
@@ -157,8 +161,8 @@ public class UserServiceImpl implements UserService {
         Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
     @Override
+    @Transactional
     public ResponseEntity<List<PostDto>> getFeed(Principal principal, String username) {
         List<PostDto> result = new ArrayList<>();
         User userToSearch = getByUsername(username);
@@ -184,6 +188,8 @@ public class UserServiceImpl implements UserService {
         });
 
         Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
+        History history=new History(new HistoryId(username,currentUser));
+        historyRepository.save(history);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
