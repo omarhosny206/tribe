@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TribeRepository extends JpaRepository<Tribe, Long> {
+    public Tribe findByName(String name);
 }

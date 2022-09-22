@@ -4,11 +4,13 @@ import com.example.dto.CommentDto;
 import com.example.dto.HistoryId;
 import com.example.dto.PostDto;
 import com.example.entity.History;
+import com.example.entity.Tribe;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.repository.HistoryRepository;
 import com.example.repository.UserRepository;
 import com.example.response.MessageResponse;
+import com.example.service.TribeService;
 import com.example.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +28,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final HistoryRepository historyRepository;
+    private final TribeService tribeService;
 
-    public UserServiceImpl(UserRepository userRepository, HistoryRepository historyRepository) {
+    public UserServiceImpl(UserRepository userRepository, HistoryRepository historyRepository, TribeService tribeService) {
         this.userRepository = userRepository;
         this.historyRepository = historyRepository;
+        this.tribeService = tribeService;
     }
 
     @Override
@@ -191,6 +195,40 @@ public class UserServiceImpl implements UserService {
         History history = new History(new HistoryId(username, currentUser));
         historyRepository.save(history);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<?> joinTribe(Principal principal, String name) {
+        Tribe tribe = tribeService.getByName(name);
+        User currentUser = getByEmail(principal.getName());
+
+        if (tribe == null)
+            throw new CustomException("Can't join, tribe not found");
+
+        List<Tribe> tribes = currentUser.getTribes();
+        if (tribes.contains(tribe))
+            throw new CustomException("Can't join, you already joined this tribe");
+
+        tribes.add(tribe);
+        return new ResponseEntity<>(new MessageResponse("joined tribe successfully"), HttpStatus.OK);
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<?> leaveTribe(Principal principal, String name) {
+        Tribe tribe = tribeService.getByName(name);
+        User currentUser = getByEmail(principal.getName());
+
+        if (tribe == null)
+            throw new CustomException("Can't leave, tribe not found");
+
+        List<Tribe> tribes = currentUser.getTribes();
+        if (!tribes.contains(tribe))
+            throw new CustomException("Can't leave, you didn't join this tribe");
+
+        tribes.remove(tribe);
+        return new ResponseEntity<>(new MessageResponse("leaved tribe successfully"), HttpStatus.OK);
     }
 
     @Override

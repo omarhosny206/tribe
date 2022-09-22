@@ -37,4 +37,9 @@ public class TribeServiceImpl implements TribeService {
         tribeRepository.save(tribe);
         return new ResponseEntity<>(new MessageResponse("tribe created successfully"), HttpStatus.OK);
     }
+
+    @Override
+    public Tribe getByName(String name) {
+        return tribeRepository.findByName(name);
+    }
 }

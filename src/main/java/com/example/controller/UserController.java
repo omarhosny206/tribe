@@ -62,4 +62,14 @@ public class UserController {
     public ResponseEntity<List<PostDto>> getFeed(Principal principal, @PathVariable String username) {
         return userService.getFeed(principal, username);
     }
+
+    @PostMapping("/tribes")
+    public ResponseEntity<?> joinTribe(Principal principal, @RequestParam String name) {
+        return userService.joinTribe(principal, name);
+    }
+
+    @DeleteMapping("/tribes")
+    public ResponseEntity<?> leaveTribe(Principal principal, @RequestParam String name) {
+        return userService.leaveTribe(principal, name);
+    }
 }

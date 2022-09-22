@@ -32,4 +32,10 @@ public interface UserService extends UserDetailsService {
 
     @Transactional
     public ResponseEntity<?> unblock(Principal principal, String username);
+
+    @Transactional
+    ResponseEntity<?> joinTribe(Principal principal, String name);
+
+    @Transactional
+    ResponseEntity<?> leaveTribe(Principal principal, String name);
 }
