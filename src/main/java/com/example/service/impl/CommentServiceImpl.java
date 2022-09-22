@@ -93,19 +93,16 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<?> edit(Principal principal, long id, ContentDto content)
-    {
+    public ResponseEntity<?> edit(Principal principal, long id, ContentDto content) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
         Comment comment = commentRepository.findById(id).orElse(null);
 
-        if(comment==null)
-        {
+        if (comment == null) {
             throw new CustomException("comment not found");
         }
 
-        if(!(user.getComments().contains(comment)))
-        {
+        if (!(user.getComments().contains(comment))) {
             throw new CustomException("you didn't create this comment");
         }
 

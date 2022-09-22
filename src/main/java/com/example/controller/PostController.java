@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ContentDto;
 import com.example.dto.PostDto;
 import com.example.service.PostService;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -22,6 +24,11 @@ public class PostController {
         return postService.save(principal, postDto);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(Principal principal, @RequestBody ContentDto contentDto, @PathVariable Long id) {
+        return postService.update(principal, contentDto, id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
         return postService.deleteById(id);
@@ -35,5 +42,20 @@ public class PostController {
     @PostMapping("/downvote/{id}")
     public ResponseEntity<?> downvote(@PathVariable Long id) {
         return postService.downVote(id);
+    }
+
+    @GetMapping("/bookmark")
+    public ResponseEntity<List<PostDto>> getAllBookmarked(Principal principal) {
+        return postService.getAllBookmarked(principal);
+    }
+
+    @PostMapping("/bookmark/{id}")
+    public ResponseEntity<?> addBookmark(Principal principal, @PathVariable Long id) {
+        return postService.addBookmark(principal, id);
+    }
+
+    @DeleteMapping("/bookmark/{id}")
+    public ResponseEntity<?> removeBookmark(Principal principal, @PathVariable Long id) {
+        return postService.removeBookmark(principal, id);
     }
 }

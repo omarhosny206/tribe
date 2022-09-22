@@ -40,8 +40,7 @@ public class CommentController {
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<?> edit(Principal principal,@PathVariable Long id,@RequestBody ContentDto content)
-    {
-        return commentService.edit(principal,id,content);
+    public ResponseEntity<?> edit(Principal principal, @PathVariable Long id, @RequestBody ContentDto content) {
+        return commentService.edit(principal, id, content);
     }
 }

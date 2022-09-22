@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,8 @@ public class Tribe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
+    @Column(unique = true, nullable = false)
     private String name;
 
     @ManyToMany
@@ -26,5 +29,5 @@ public class Tribe {
     private List<User> users;
 
     @OneToMany(mappedBy = "tribe")
-    private List<Post>posts;
+    private List<Post> posts;
 }

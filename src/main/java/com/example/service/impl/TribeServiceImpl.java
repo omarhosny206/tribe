@@ -21,17 +21,18 @@ public class TribeServiceImpl implements TribeService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final TribeRepository tribeRepository;
+
     public TribeServiceImpl(ModelMapper modelMapper, UserRepository userRepository, TribeRepository tribeRepository) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.tribeRepository = tribeRepository;
     }
+
     @Override
-    public ResponseEntity<?>create(Principal principal, TribeDto tribeDto)
-    {
+    public ResponseEntity<?> create(Principal principal, TribeDto tribeDto) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
-        Tribe tribe=modelMapper.map(tribeDto,Tribe.class);
+        Tribe tribe = modelMapper.map(tribeDto, Tribe.class);
         tribe.getUsers().add(user);
         tribeRepository.save(tribe);
         return new ResponseEntity<>(new MessageResponse("tribe created successfully"), HttpStatus.OK);

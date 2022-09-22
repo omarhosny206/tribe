@@ -9,5 +9,6 @@ import java.util.List;
 public interface HistoryService {
     @Transactional
     public ResponseEntity<?> clear(Principal principal);
-    public ResponseEntity<List<String>>getAll(Principal principal);
+
+    public ResponseEntity<List<String>> getAll(Principal principal);
 }

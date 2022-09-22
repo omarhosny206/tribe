@@ -20,14 +20,12 @@ public class HistoryController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> clear(Principal principal)
-    {
+    public ResponseEntity<?> clear(Principal principal) {
         return historyService.clear(principal);
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<String>> getAll(Principal principal)
-    {
+    public ResponseEntity<List<String>> getAll(Principal principal) {
         return historyService.getAll(principal);
     }
 }

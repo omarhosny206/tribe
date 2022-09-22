@@ -26,6 +26,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final HistoryRepository historyRepository;
+
     public UserServiceImpl(UserRepository userRepository, HistoryRepository historyRepository) {
         this.userRepository = userRepository;
         this.historyRepository = historyRepository;
@@ -128,12 +129,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseEntity<?> unblock(Principal principal, String username)
-    {
+    public ResponseEntity<?> unblock(Principal principal, String username) {
         User currentUser = getByEmail(principal.getName());
-        User userToUnBlock=getByUsername(username);
-        if(!(currentUser.getBlocked().contains(userToUnBlock)))
-        {
+        User userToUnBlock = getByUsername(username);
+        if (!(currentUser.getBlocked().contains(userToUnBlock))) {
             throw new CustomException("user isn't blocked");
         }
         List<User> blocked = currentUser.getBlocked();
@@ -161,6 +160,7 @@ public class UserServiceImpl implements UserService {
         Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
     @Override
     @Transactional
     public ResponseEntity<List<PostDto>> getFeed(Principal principal, String username) {
@@ -188,7 +188,7 @@ public class UserServiceImpl implements UserService {
         });
 
         Collections.sort(result, (a, b) -> (int) (b.getVotes() - a.getVotes()));
-        History history=new History(new HistoryId(username,currentUser));
+        History history = new History(new HistoryId(username, currentUser));
         historyRepository.save(history);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

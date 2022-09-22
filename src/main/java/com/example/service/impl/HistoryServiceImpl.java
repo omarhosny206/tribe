@@ -22,10 +22,10 @@ public class HistoryServiceImpl implements HistoryService {
         this.userRepository = userRepository;
         this.historyRepository = historyRepository;
     }
+
     @Override
     @Transactional
-    public ResponseEntity<?>clear(Principal principal)
-    {
+    public ResponseEntity<?> clear(Principal principal) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
         historyRepository.deleteByUser(user.getId());
@@ -34,11 +34,10 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     @Transactional
-    public ResponseEntity<List<String>>getAll(Principal principal)
-    {
+    public ResponseEntity<List<String>> getAll(Principal principal) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
-        return new ResponseEntity<>(historyRepository.getByUser(user.getId()),HttpStatus.OK);
+        return new ResponseEntity<>(historyRepository.getByUser(user.getId()), HttpStatus.OK);
     }
 
 }
