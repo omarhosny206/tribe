@@ -28,7 +28,7 @@ public class HistoryServiceImpl implements HistoryService {
     public ResponseEntity<?> clear(Principal principal) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
-        historyRepository.deleteByUser(user.getId());
+        historyRepository.deleteByUserId(user.getId());
         return new ResponseEntity<>(new MessageResponse("history cleared"), HttpStatus.OK);
     }
 
@@ -37,7 +37,7 @@ public class HistoryServiceImpl implements HistoryService {
     public ResponseEntity<List<String>> getAll(Principal principal) {
         String username = principal.getName();
         User user = userRepository.findByEmail(username);
-        return new ResponseEntity<>(historyRepository.getByUser(user.getId()), HttpStatus.OK);
+        return new ResponseEntity<>(historyRepository.getByUserId(user.getId()), HttpStatus.OK);
     }
 
 }

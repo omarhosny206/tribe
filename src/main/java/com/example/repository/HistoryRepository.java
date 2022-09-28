@@ -10,12 +10,12 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface HistoryRepository extends JpaRepository<History, HistoryId> {
-    @Query(nativeQuery = true, value = "delete from history where user_id= ?1")
+    @Query(nativeQuery = true, value = "DELETE FROM history WHERE user_id= ?1")
     @Modifying
     @Transactional
-    public void deleteByUser(Long userId);
+    public void deleteByUserId(Long userId);
 
-    @Query(nativeQuery = true, value = "select content from history where user_id= ?1")
+    @Query(nativeQuery = true, value = "SELECT content FROM history WHERE user_id= ?1")
     @Transactional
-    public List<String> getByUser(Long userId);
+    public List<String> getByUserId(Long userId);
 }
