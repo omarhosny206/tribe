@@ -110,3 +110,5 @@
 
 - Adding OAuth 2.0.
 - Signup with Google, Facebook and other platforms.
+
+# API Documentation 📝 via [|Swagger|](http://localhost:8080/swagger-ui/index.html#/)
