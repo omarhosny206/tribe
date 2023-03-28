@@ -12,6 +12,7 @@
 - Authorization was done using JWT(Json Web Token).
 - Error and Exception handling.
 
+
 ```
 .
 ├── pom.xml
