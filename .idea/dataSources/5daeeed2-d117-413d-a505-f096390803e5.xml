@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="social_media_app_db">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.39">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <IntrospectionStateNumber>994</IntrospectionStateNumber>
@@ -819,8 +819,6 @@ false Zulu
 13388||-9223372036854775807|U|G</Grants>
       <IntrospectionStateNumber>1015</IntrospectionStateNumber>
       <ObjectId>16619</ObjectId>
-      <Relations>sequence|table|16885|16886|1
-</Relations>
       <OwnerName>postgres</OwnerName>
     </database>
     <role id="7" parent="1" name="pg_database_owner">
@@ -4246,14 +4244,18 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </schema>
     <sequence id="266" parent="265" name="hibernate_sequence">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <ObjectId>16721</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>899</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="267" parent="265" name="user_id_seq">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <ObjectId>16885</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>997</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
@@ -4288,26 +4290,26 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </table>
     <column id="273" parent="268" name="id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>995</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="274" parent="268" name="content">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>995</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="275" parent="268" name="post_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <Position>3</Position>
       <StateNumber>995</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="276" parent="268" name="user_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <Position>4</Position>
       <StateNumber>995</StateNumber>
       <TypeId>20</TypeId>
@@ -4317,7 +4319,6 @@ false Zulu
       <ObjectId>16903</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <RefKeyName>post_pkey</RefKeyName>
       <StateNumber>1004</StateNumber>
       <RefTableId>16880</RefTableId>
       <RefTableName>post</RefTableName>
@@ -4343,7 +4344,6 @@ false Zulu
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="280" parent="268" name="comment_pkey">
-      <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16879</ObjectId>
       <Primary>1</Primary>
@@ -4351,20 +4351,20 @@ false Zulu
       <UnderlyingIndexId>16878</UnderlyingIndexId>
     </key>
     <column id="281" parent="269" name="id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>996</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="282" parent="269" name="content">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>996</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="283" parent="269" name="user_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <Position>3</Position>
       <StateNumber>996</StateNumber>
       <TypeId>20</TypeId>
@@ -4389,7 +4389,6 @@ false Zulu
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="286" parent="269" name="post_pkey">
-      <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16884</ObjectId>
       <Primary>1</Primary>
@@ -4397,39 +4396,40 @@ false Zulu
       <UnderlyingIndexId>16883</UnderlyingIndexId>
     </key>
     <column id="287" parent="270" name="id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>997</StateNumber>
+      <SequenceId>16885</SequenceId>
       <TypeId>20</TypeId>
     </column>
     <column id="288" parent="270" name="email">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="289" parent="270" name="first_name">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="290" parent="270" name="last_name">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="291" parent="270" name="password">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
       <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="292" parent="270" name="username">
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
       <StateNumber>997</StateNumber>
       <TypeId>1043</TypeId>
@@ -4464,7 +4464,6 @@ false Zulu
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
     <key id="296" parent="270" name="user_pkey">
-      <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16892</ObjectId>
       <Primary>1</Primary>
@@ -4472,26 +4471,24 @@ false Zulu
       <UnderlyingIndexId>16891</UnderlyingIndexId>
     </key>
     <key id="297" parent="270" name="uk_ob8kqyqqgmefl0aco34akdtpe">
-      <ColNames>email</ColNames>
       <ObjectId>16900</ObjectId>
       <StateNumber>1001</StateNumber>
       <UnderlyingIndexId>16899</UnderlyingIndexId>
     </key>
     <key id="298" parent="270" name="uk_sb8bbouer5wak8vyiiy4pf2bx">
-      <ColNames>username</ColNames>
       <ObjectId>16902</ObjectId>
       <StateNumber>1003</StateNumber>
       <UnderlyingIndexId>16901</UnderlyingIndexId>
     </key>
     <column id="299" parent="271" name="user_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>998</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="300" parent="271" name="follower_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>998</StateNumber>
@@ -4502,7 +4499,6 @@ false Zulu
       <ObjectId>16923</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <RefKeyName>user_pkey</RefKeyName>
       <StateNumber>1008</StateNumber>
       <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
@@ -4513,21 +4509,20 @@ false Zulu
       <ObjectId>16918</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <RefKeyName>user_pkey</RefKeyName>
       <StateNumber>1007</StateNumber>
       <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <column id="303" parent="272" name="user_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>999</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="304" parent="272" name="following_id">
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>999</StateNumber>
@@ -4538,7 +4533,6 @@ false Zulu
       <ObjectId>16933</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <RefKeyName>user_pkey</RefKeyName>
       <StateNumber>1010</StateNumber>
       <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
@@ -4549,7 +4543,6 @@ false Zulu
       <ObjectId>16928</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <RefKeyName>user_pkey</RefKeyName>
       <StateNumber>1009</StateNumber>
       <RefTableId>16886</RefTableId>
       <RefTableName>user</RefTableName>
