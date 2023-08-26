@@ -52,14 +52,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post save(User authenticatedUser, PostRequestDto postRequestDto) {
         if (postRequestDto.getTribe() == null) {
-            postRequestDto.setTribe("own." + authenticatedUser.getId());
+            postRequestDto.setTribe("own.tribe." + authenticatedUser.getId());
         }
         Tribe tribe = tribeService.getByName(postRequestDto.getTribe());
         UserTribe userTribe = userTribeService.getByIdOrNull(new UserTribeId(
                 authenticatedUser.getId(),
                 tribe.getId()
         ));
-        if(userTribe == null) {
+        if (userTribe == null) {
             throw ApiError.badRequest("Cannot save post, you are not a member of this tribe");
         }
         Post post = new Post(postRequestDto.getContent(), authenticatedUser, tribe);

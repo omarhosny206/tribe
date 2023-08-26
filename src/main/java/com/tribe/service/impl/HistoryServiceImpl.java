@@ -1,11 +1,13 @@
 package com.tribe.service.impl;
 
+import com.tribe.dto.ContentDto;
 import com.tribe.entity.History;
 import com.tribe.entity.User;
 import com.tribe.exception.ApiError;
 import com.tribe.repository.HistoryRepository;
 import com.tribe.service.HistoryService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,6 +35,21 @@ public class HistoryServiceImpl implements HistoryService {
                 .orElseThrow(() -> ApiError.notFound("History not found with id=" + id));
     }
 
+    @Override
+    public History save(History history) {
+        return historyRepository.save(history);
+    }
+
+    @Override
+    public History save(User authenticatedUser, ContentDto contentDto) {
+        History historyToSave = new History(
+                contentDto.getContent(),
+                authenticatedUser
+        );
+        return save(historyToSave);
+    }
+
+    @Transactional
     @Override
     public void clearAll(long userId) {
         historyRepository.deleteAllByUserId(userId);

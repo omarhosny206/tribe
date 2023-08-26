@@ -32,7 +32,7 @@ public class TribeServiceImpl implements TribeService {
     @Override
     public Tribe getById(long id) {
         return tribeRepository.findById(id)
-                .orElseThrow(() -> ApiError.badRequest("Tribe not found with id=" + id));
+                .orElseThrow(() -> ApiError.notFound("Tribe not found with id=" + id));
     }
 
     @Override
@@ -76,6 +76,9 @@ public class TribeServiceImpl implements TribeService {
         Tribe tribe = getById(id);
         if (tribe.getUser().getId() != authenticatedUser.getId()) {
             throw ApiError.badRequest("Cannot delete the tribe, you are not the author.");
+        }
+        if (tribe.getName().equals("own.tribe." + authenticatedUser.getId())) {
+            throw ApiError.badRequest("Cannot delete the default tribe.");
         }
         tribeRepository.deleteById(id);
     }

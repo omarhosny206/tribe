@@ -17,6 +17,7 @@ public interface CommentService {
     List<Comment> getAllByPostId(long postId);
 
     Comment save(Comment comment);
+
     Comment save(User authenticatedUser, CommentRequestDto commentRequestDto);
 
     Comment update(User authenticatedUser, long id, ContentDto contentDto);

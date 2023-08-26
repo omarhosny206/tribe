@@ -21,4 +21,9 @@ public class History {
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
+
+    public History(String content, User user) {
+        this.content = content;
+        this.user = user;
+    }
 }

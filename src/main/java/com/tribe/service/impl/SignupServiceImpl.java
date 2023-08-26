@@ -2,7 +2,6 @@ package com.tribe.service.impl;
 
 import com.tribe.dto.SignupRequestDto;
 import com.tribe.dto.TribeRequestDto;
-import com.tribe.entity.Tribe;
 import com.tribe.entity.User;
 import com.tribe.exception.ApiError;
 import com.tribe.service.SignupService;
@@ -35,7 +34,7 @@ public class SignupServiceImpl implements SignupService {
         String generatedUsername = null;
 
         while (true) {
-            System.out.println("AA="+signupRequestDto.getEmail());
+            System.out.println("AA=" + signupRequestDto.getEmail());
             generatedUsername = UsernameGenerator.generateFromEmail(signupRequestDto.getEmail());
             User userWithUsername = userService.getByUsernameOrNull(generatedUsername);
             if (userWithUsername == null) {
@@ -52,7 +51,7 @@ public class SignupServiceImpl implements SignupService {
         );
 
         User savedUser = userService.save(user);
-        tribeService.save(savedUser, new TribeRequestDto("own." + savedUser.getId()));
+        tribeService.save(savedUser, new TribeRequestDto("own.tribe." + savedUser.getId()));
         return savedUser;
     }
 }

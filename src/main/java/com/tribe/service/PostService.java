@@ -13,7 +13,9 @@ public interface PostService {
     List<Post> getAllByUserId(long userId);
 
     Post getById(long id);
+
     Post save(Post post);
+
     Post save(User authenticatedUser, PostRequestDto postRequestDto);
 
     Post update(User authenticatedUser, long id, ContentDto contentDto);
