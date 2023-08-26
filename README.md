@@ -14,72 +14,60 @@
 
 ```
 .
-├── pom.xml
 ├── README.md
+├── pom.xml
 ├── src
-│   └── main
-│       ├── java
-│       │   └── com
-│       │       └── example
-│       │           ├── config
-│       │           │   └── SecurityConfig.java
-│       │           ├── controller
-│       │           │   ├── CommentController.java
-│       │           │   ├── HistoryController.java
-│       │           │   ├── LoginController.java
-│       │           │   ├── PostController.java
-│       │           │   ├── RegisterController.java
-│       │           │   ├── TribeController.java
-│       │           │   └── UserController.java
-│       │           ├── dto
-│       │           │   ├── CommentDto.java
-│       │           │   ├── ContentDto.java
-│       │           │   ├── HistoryId.java
-│       │           │   ├── LoginRequest.java
-│       │           │   ├── LoginResponse.java
-│       │           │   ├── PostDto.java
-│       │           │   ├── TribeDto.java
-│       │           │   └── UserDto.java
-│       │           ├── entity
-│       │           │   ├── Comment.java
-│       │           │   ├── History.java
-│       │           │   ├── Post.java
-│       │           │   ├── Tribe.java
-│       │           │   └── User.java
-│       │           ├── exception
-│       │           │   ├── ControllerAdvisor.java
-│       │           │   └── CustomException.java
-│       │           ├── filter
-│       │           │   └── JwtFilter.java
-│       │           ├── repository
-│       │           │   ├── CommentRepository.java
-│       │           │   ├── HistoryRepository.java
-│       │           │   ├── PostRepository.java
-│       │           │   ├── TribeRepository.java
-│       │           │   └── UserRepository.java
-│       │           ├── response
-│       │           │   └── MessageResponse.java
-│       │           ├── service
-│       │           │   ├── CommentService.java
-│       │           │   ├── HistoryService.java
-│       │           │   ├── impl
-│       │           │   │   ├── CommentServiceImpl.java
-│       │           │   │   ├── HistoryServiceImpl.java
-│       │           │   │   ├── LoginServiceImpl.java
-│       │           │   │   ├── PostServiceImp.java
-│       │           │   │   ├── RegistrationServiceImpl.java
-│       │           │   │   ├── TribeServiceImpl.java
-│       │           │   │   └── UserServiceImpl.java
-│       │           │   ├── LoginService.java
-│       │           │   ├── PostService.java
-│       │           │   ├── RegistrationService.java
-│       │           │   ├── TribeService.java
-│       │           │   └── UserService.java
-│       │           ├── TribeApplication.java
-│       │           └── util
-│       │               └── JwtUtil.java
-│       └── resources
-│           └── application.properties
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── tribe
+│       │           ├── TribeApplication.java
+│       │           ├── controller
+│       │           │   ├── HistoryController.java
+│       │           │   ├── LoginController.java
+│       │           │   ├── SignupController.java
+│       │           │   └── UserController.java
+│       │           ├── dto
+│       │           │   ├── CommentRequestDto.java
+│       │           │   ├── ContentDto.java
+│       │           │   ├── LoginRequestDto.java
+│       │           │   ├── LoginResponseDto.java
+│       │           │   ├── TribeRequestDto.java
+│       │           │   └── UserDto.java
+│       │           ├── entity
+│       │           │   ├── Comment.java
+│       │           │   ├── History.java
+│       │           │   ├── Post.java
+│       │           │   ├── Tribe.java
+│       │           │   └── User.java
+│       │           ├── repository
+│       │           │   ├── CommentRepository.java
+│       │           │   ├── HistoryRepository.java
+│       │           │   ├── PostRepository.java
+│       │           │   ├── TribeRepository.java
+│       │           │   └── UserRepository.java
+│       │           ├── response
+│       │           │   └── MessageResponse.java
+│       │           ├── service
+│       │           │   ├── CommentService.java
+│       │           │   ├── HistoryService.java
+│       │           │   ├── LoginService.java
+│       │           │   ├── PostService.java
+│       │           │   ├── SignupService.java
+│       │           │   ├── TribeService.java
+│       │           │   ├── UserService.java
+│       │           │   └── impl
+│       │           │       ├── CommentServiceImpl.java
+│       │           │       ├── HistoryServiceImpl.java
+│       │           │       ├── LoginServiceImpl.java
+│       │           │       ├── PostServiceImpl.java
+│       │           │       ├── SignupServiceImpl.java
+│       │           │       ├── TribeServiceImpl.java
+│       │           │       └── UserServiceImpl.java
+│       │           └── util
+│       │               └── JwtUtil.java
+│       └── resources
+│           └── application.properties
 ```
 
 # **Database Design 🖊️**
