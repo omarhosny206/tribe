@@ -14,7 +14,9 @@
 
 ```
 .
+├── Dockerfile
 ├── README.md
+├── docker-compose.yml
 ├── pom.xml
 ├── src
 │   └── main
@@ -22,51 +24,104 @@
 │       │   └── com
 │       │       └── tribe
 │       │           ├── TribeApplication.java
+│       │           ├── config
+│       │           │   ├── BeanConfig.java
+│       │           │   └── SecurityConfig.java
 │       │           ├── controller
+│       │           │   ├── CommentController.java
 │       │           │   ├── HistoryController.java
 │       │           │   ├── LoginController.java
+│       │           │   ├── PostBookmarkController.java
+│       │           │   ├── PostController.java
 │       │           │   ├── SignupController.java
-│       │           │   └── UserController.java
+│       │           │   ├── TribeController.java
+│       │           │   ├── UserController.java
+│       │           │   └── UserTribeController.java
 │       │           ├── dto
 │       │           │   ├── CommentRequestDto.java
 │       │           │   ├── ContentDto.java
+│       │           │   ├── ErrorDto.java
+│       │           │   ├── HistoryRequestDto.java
 │       │           │   ├── LoginRequestDto.java
 │       │           │   ├── LoginResponseDto.java
+│       │           │   ├── MessageDto.java
+│       │           │   ├── PostBookmarkDto.java
+│       │           │   ├── PostRequestDto.java
+│       │           │   ├── SignupRequestDto.java
 │       │           │   ├── TribeRequestDto.java
-│       │           │   └── UserDto.java
+│       │           │   ├── UserBlockingDto.java
+│       │           │   ├── UserDto.java
+│       │           │   ├── UserFollowingDto.java
+│       │           │   └── UserTribeDto.java
 │       │           ├── entity
 │       │           │   ├── Comment.java
 │       │           │   ├── History.java
 │       │           │   ├── Post.java
+│       │           │   ├── PostBookmark.java
 │       │           │   ├── Tribe.java
-│       │           │   └── User.java
+│       │           │   ├── User.java
+│       │           │   ├── UserBlocking.java
+│       │           │   ├── UserFollowing.java
+│       │           │   └── UserTribe.java
+│       │           ├── exception
+│       │           │   ├── ApiError.java
+│       │           │   ├── CustomAuthenticationExceptionEntryPoint.java
+│       │           │   ├── CustomException.java
+│       │           │   └── CustomExceptionHandler.java
+│       │           ├── filter
+│       │           │   └── JwtAuthenticationFilter.java
 │       │           ├── repository
 │       │           │   ├── CommentRepository.java
 │       │           │   ├── HistoryRepository.java
+│       │           │   ├── PostBookmarkRepository.java
 │       │           │   ├── PostRepository.java
 │       │           │   ├── TribeRepository.java
-│       │           │   └── UserRepository.java
+│       │           │   ├── UserBlockingRepository.java
+│       │           │   ├── UserFollowingRepository.java
+│       │           │   ├── UserRepository.java
+│       │           │   └── UserTribeRepository.java
 │       │           ├── response
 │       │           │   └── MessageResponse.java
 │       │           ├── service
 │       │           │   ├── CommentService.java
 │       │           │   ├── HistoryService.java
 │       │           │   ├── LoginService.java
+│       │           │   ├── PostBookmarkService.java
 │       │           │   ├── PostService.java
 │       │           │   ├── SignupService.java
 │       │           │   ├── TribeService.java
+│       │           │   ├── UserBlockingService.java
+│       │           │   ├── UserFollowingService.java
 │       │           │   ├── UserService.java
+│       │           │   ├── UserTribeService.java
 │       │           │   └── impl
 │       │           │       ├── CommentServiceImpl.java
 │       │           │       ├── HistoryServiceImpl.java
 │       │           │       ├── LoginServiceImpl.java
+│       │           │       ├── PostBookmarkServiceImpl.java
 │       │           │       ├── PostServiceImpl.java
 │       │           │       ├── SignupServiceImpl.java
 │       │           │       ├── TribeServiceImpl.java
-│       │           │       └── UserServiceImpl.java
-│       │           └── util
-│       │               └── JwtUtil.java
+│       │           │       ├── UserBlockingServiceImpl.java
+│       │           │       ├── UserFollowingServiceImpl.java
+│       │           │       ├── UserServiceImpl.java
+│       │           │       └── UserTribeServiceImpl.java
+│       │           ├── util
+│       │           │   ├── AuthenticationUser.java
+│       │           │   ├── CustomUser.java
+│       │           │   ├── JwtUtil.java
+│       │           │   ├── PostBookmarkId.java
+│       │           │   ├── Roles.java
+│       │           │   ├── UserBlockingId.java
+│       │           │   ├── UserFollowingId.java
+│       │           │   ├── UserTribeId.java
+│       │           │   └── UsernameGenerator.java
+│       │           └── validation
+│       │               ├── RoleValidator.java
+│       │               └── annotation
+│       │                   └── ValidRole.java
 │       └── resources
+│           ├── application-prod.properties
 │           └── application.properties
 ```
 
