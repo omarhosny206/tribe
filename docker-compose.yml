@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: app
+    build: .
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=password
+    ports:
+      - "8080:9999"
+    depends_on:
+      - postgres
+    networks:
+      spring-app-network:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      spring-app-network:
+
+volumes:
+  postgres-data:
+
+networks:
+  spring-app-network:
+    driver: bridge
