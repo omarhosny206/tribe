@@ -83,16 +83,18 @@
 ```
 
 # **Database Design 🖊️**
+![comment0](https://github.com/omarhosny206/tribe/assets/58389695/59d23377-bb12-40f4-80c1-502c9dd67289)
 
-![image](https://user-images.githubusercontent.com/58389695/192824045-4302d4d5-3c60-4237-b59d-219e761baf22.png)
 
 # **Tech Stack ⚡**
 
 - Programming Language: Java 17
-- Backend Framework: Spring Boot v2.7.2
+- Backend Framework: Spring Boot v3.1.2
 - Database Engine: PostgreSQL
 - API Documentation: Swagger via OpenApi 3.0
-- Other Frameworks: Spring [**Security**, **Data JPA**], Hibernate
+- Containerization and Orchestration: Docker, Kubernetes
+- Cloud: AWS
+- Other Frameworks: Spring Security Data JPA, Hibernate
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
