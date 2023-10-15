@@ -74,12 +74,17 @@ public class TribeServiceImpl implements TribeService {
     @Override
     public void deleteById(User authenticatedUser, long id) {
         Tribe tribe = getById(id);
-        if (tribe.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot delete the tribe, you are not the author.");
-        }
+        checkAuthority(authenticatedUser, tribe);
         if (tribe.getName().equals("own.tribe." + authenticatedUser.getId())) {
             throw ApiError.badRequest("Cannot delete the default tribe.");
         }
         tribeRepository.deleteById(id);
+    }
+
+    @Override
+    public void checkAuthority(User authenticatedUser, Tribe tribe) {
+        if (tribe.getUser().getId() != authenticatedUser.getId()) {
+            throw ApiError.forbidden("Cannot do this action, you are not the author.");
+        }
     }
 }

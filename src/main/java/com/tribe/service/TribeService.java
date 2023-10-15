@@ -19,8 +19,9 @@ public interface TribeService {
 
     Tribe save(Tribe tribe);
 
-
     Tribe save(User authenticatedUser, TribeRequestDto tribeRequestDto);
 
     void deleteById(User authenticatedUser, long id);
+
+    void checkAuthority(User authenticatedUser, Tribe tribe);
 }
