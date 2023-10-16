@@ -28,13 +28,12 @@ public class SignupServiceImpl implements SignupService {
         User userByEmail = userService.getByEmailOrNull(signupRequestDto.getEmail());
 
         if (userByEmail != null) {
-            throw ApiError.badRequest("User with this email already exist, choose another email");
+            throw ApiError.badRequest("User with this email already exists, choose another email");
         }
 
         String generatedUsername = null;
 
         while (true) {
-            System.out.println("AA=" + signupRequestDto.getEmail());
             generatedUsername = UsernameGenerator.generateFromEmail(signupRequestDto.getEmail());
             User userWithUsername = userService.getByUsernameOrNull(generatedUsername);
             if (userWithUsername == null) {
