@@ -92,7 +92,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void checkAuthority(User authenticatedUser, Comment comment) {
         if (comment.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot do this action, you are not the author.");
+            throw ApiError.forbidden("Cannot do this action, you are not the author.");
         }
     }
 }
