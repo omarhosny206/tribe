@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService {
                 tribe.getId()
         ));
         if (userTribe == null) {
-            throw ApiError.badRequest("Cannot save post, you are not a member of this tribe");
+            throw ApiError.forbidden("Cannot save post, you are not a member of this tribe");
         }
         Post post = new Post(postRequestDto.getContent(), authenticatedUser, tribe);
         return save(post);
