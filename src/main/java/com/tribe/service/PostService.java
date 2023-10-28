@@ -25,4 +25,6 @@ public interface PostService {
     Post downvote(long id);
 
     void deleteById(User authenticatedUser, long id);
+
+    void checkAuthority(User authenticatedUser, Post post);
 }

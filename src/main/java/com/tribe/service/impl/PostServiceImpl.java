@@ -69,9 +69,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post update(User authenticatedUser, long id, ContentDto contentDto) {
         Post post = getById(id);
-        if (post.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot update the post, you are not the author.");
-        }
+        checkAuthority(authenticatedUser, post);
         post.setContent(contentDto.getContent());
         return save(post);
     }
@@ -96,9 +94,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteById(User authenticatedUser, long id) {
         Post post = getById(id);
-        if (post.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot delete the post, you are not the author.");
-        }
+        checkAuthority(authenticatedUser, post);
         postRepository.deleteById(id);
+    }
+
+    @Override
+    public void checkAuthority(User authenticatedUser, Post post) {
+        if (post.getUser().getId() != authenticatedUser.getId()) {
+            throw ApiError.forbidden("Cannot update the post, you are not the author.");
+        }
     }
 }
