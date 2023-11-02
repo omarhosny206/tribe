@@ -27,4 +27,6 @@ public interface CommentService {
     Comment downvote(long id);
 
     void deleteById(User authenticatedUser, long id);
+
+    void checkAuthority(User authenticatedUser, Comment comment);
 }

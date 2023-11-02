@@ -60,9 +60,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment update(User authenticatedUser, long id, ContentDto contentDto) {
         Comment comment = getById(id);
-        if (comment.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot update the comment, you are not the author.");
-        }
+        checkAuthority(authenticatedUser, comment);
         comment.setContent(contentDto.getContent());
         return save(comment);
     }
@@ -87,9 +85,14 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteById(User authenticatedUser, long id) {
         Comment comment = getById(id);
-        if (comment.getUser().getId() != authenticatedUser.getId()) {
-            throw ApiError.badRequest("Cannot delete the comment, you are not the author.");
-        }
+        checkAuthority(authenticatedUser, comment);
         commentRepository.deleteById(id);
+    }
+
+    @Override
+    public void checkAuthority(User authenticatedUser, Comment comment) {
+        if (comment.getUser().getId() != authenticatedUser.getId()) {
+            throw ApiError.badRequest("Cannot do this action, you are not the author.");
+        }
     }
 }
