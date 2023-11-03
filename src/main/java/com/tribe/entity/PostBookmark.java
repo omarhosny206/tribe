@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "`user_post_bookmarks`")
+@Table(name = "`user_post_bookmark`")
 public class PostBookmark {
     @Id
     private PostBookmarkId id;
