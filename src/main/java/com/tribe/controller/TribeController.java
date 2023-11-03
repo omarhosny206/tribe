@@ -58,6 +58,13 @@ public class TribeController {
                 .body(tribeService.save(AuthenticationUser.get(authentication), tribeRequestDto));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Tribe> update(Authentication authentication, @PathVariable long id, @Valid @RequestBody TribeRequestDto tribeRequestDto) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(tribeService.update(AuthenticationUser.get(authentication), id, tribeRequestDto));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<MessageDto> deleteById(Authentication authentication, @PathVariable long id) {
         tribeService.deleteById(AuthenticationUser.get(authentication), id);
