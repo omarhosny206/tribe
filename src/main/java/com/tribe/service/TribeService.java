@@ -1,5 +1,6 @@
 package com.tribe.service;
 
+import com.tribe.dto.ContentDto;
 import com.tribe.dto.TribeRequestDto;
 import com.tribe.entity.Tribe;
 import com.tribe.entity.User;
@@ -20,6 +21,8 @@ public interface TribeService {
     Tribe save(Tribe tribe);
 
     Tribe save(User authenticatedUser, TribeRequestDto tribeRequestDto);
+
+    Tribe update(User authenticatedUser, long id, TribeRequestDto tribeRequestDto);
 
     void deleteById(User authenticatedUser, long id);
 

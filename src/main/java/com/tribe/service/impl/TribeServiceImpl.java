@@ -72,6 +72,14 @@ public class TribeServiceImpl implements TribeService {
     }
 
     @Override
+    public Tribe update(User authenticatedUser, long id, TribeRequestDto tribeRequestDto) {
+        Tribe tribe = getById(id);
+        checkAuthority(authenticatedUser, tribe);
+        tribe.setName(tribeRequestDto.getName());
+        return save(tribe);
+    }
+
+    @Override
     public void deleteById(User authenticatedUser, long id) {
         Tribe tribe = getById(id);
         checkAuthority(authenticatedUser, tribe);
