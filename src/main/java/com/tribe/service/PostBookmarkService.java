@@ -10,13 +10,17 @@ import java.util.List;
 public interface PostBookmarkService {
     List<PostBookmark> getAll();
 
+    PostBookmark getById(PostBookmarkId id);
+
     List<PostBookmark> getAllByUserId(long userId);
 
-    PostBookmark getById(PostBookmarkId id);
+    List<PostBookmark> getAllByPostId(long postId);
 
     PostBookmark save(PostBookmark postBookmark);
 
     PostBookmark save(User authentatedUser, PostBookmarkDto postBookmarkDto);
 
     void deleteById(User authentatedUser, PostBookmarkId id);
+
+    void checkAuthority(User authentatedUser, PostBookmark postBookmark);
 }

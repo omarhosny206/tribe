@@ -34,6 +34,11 @@ public class PostBookmarkServiceImpl implements PostBookmarkService {
     }
 
     @Override
+    public List<PostBookmark> getAllByPostId(long postId) {
+        return postBookmarkRepository.findAllByPostId(postId);
+    }
+
+    @Override
     public PostBookmark getById(PostBookmarkId id) {
         return postBookmarkRepository.findById(id)
                 .orElseThrow(() -> ApiError.notFound("PostBookmark not found with id=(" + id.getUserId() + ", " + id.getPostId() + ")"));
@@ -58,9 +63,14 @@ public class PostBookmarkServiceImpl implements PostBookmarkService {
     @Override
     public void deleteById(User authentatedUser, PostBookmarkId id) {
         PostBookmark postBookmark = getById(id);
-        if (postBookmark.getUser().getId() != authentatedUser.getId()) {
-            throw ApiError.badRequest("Cannot delete the post bookmark, you are not the author");
-        }
+        checkAuthority(authentatedUser, postBookmark);
         postBookmarkRepository.deleteById(id);
+    }
+
+    @Override
+    public void checkAuthority(User authentatedUser, PostBookmark postBookmark) {
+        if (postBookmark.getUser().getId() != authentatedUser.getId()) {
+            throw ApiError.forbidden("Cannot delete the post bookmark, you are not the author");
+        }
     }
 }
