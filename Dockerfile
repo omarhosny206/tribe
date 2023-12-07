@@ -1,15 +1,17 @@
 # Stage 1: Build the application
-FROM maven:3.9.5-amazoncorretto-17 as build
+FROM amazoncorretto:17 as build
 
 WORKDIR /app
 
-COPY ./pom.xml .
+COPY ./mvnw ./pom.xml .
+COPY ./.mvn ./.mvn
 
-RUN mvn dependency:go-offline
+RUN chmod +x ./mvnw
+RUN ./mvnw dependency:go-offline
 
 COPY ./src ./src
 
-RUN mvn clean package -DskipTests
+RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Create a runtime container
 FROM amazoncorretto:17 as runtime
