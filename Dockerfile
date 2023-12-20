@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM amazoncorretto:17-alpine as build
+FROM amazoncorretto:17-alpine as builder
 
 WORKDIR /app
 
@@ -18,6 +18,6 @@ FROM amazoncorretto:17-alpine as runtime
 
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar /app/app.jar
+COPY --from=builder /app/target/*.jar /app/app.jar
 
 CMD ["java", "-jar", "app.jar"]
