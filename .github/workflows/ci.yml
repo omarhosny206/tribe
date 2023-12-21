@@ -20,8 +20,3 @@ jobs:
         run: docker build -t $DOCKERHUB_USERNAME/tribe:latest .
       - name: Push docker image to dockerhub
         run: docker push $DOCKERHUB_USERNAME/tribe:latest
-      - name: pull and push
-        run: |
-            docker pull tcardonne/github-runner 
-            docker tag tcardonne/github-runner omarhosny102/github-runner:latest
-            docker push omarhosny102/github-runner:latest
