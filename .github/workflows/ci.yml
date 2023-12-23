@@ -17,10 +17,11 @@ jobs:
       - name: Login to dockerhub
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
       - name: Build docker image
-        run: | 
-	  docker build -t $DOCKERHUB_USERNAME/tribe:latest . 
-	  docker build -t $DOCKERHUB_USERNAME/tribe:${{ github.sha }} .
-      - name: Push docker image to dockerhub
-        run: | 
-	  docker push $DOCKERHUB_USERNAME/tribe:latest 
-	  docker push $DOCKERHUB_USERNAME/tribe:${{ github.sha }}
+  	run: |
+    	  docker build -t $DOCKERHUB_USERNAME/tribe:latest .
+    	  docker build -t $DOCKERHUB_USERNAME/tribe:${{ github.sha }} .
+      - name: Push docker image to Docker Hub
+  	run: | 
+    	  docker push $DOCKERHUB_USERNAME/tribe:latest 
+    	  docker push $DOCKERHUB_USERNAME/tribe:${{ github.sha }}
+
