@@ -1,4 +1,4 @@
-name: CI Pipeline/Workflow
+name: CICD Pipeline/Workflow
 
 on:
   push:
@@ -24,3 +24,17 @@ jobs:
         run: |
           docker push $DOCKERHUB_USERNAME/tribe:latest 
           docker push $DOCKERHUB_USERNAME/tribe:${{ github.sha }}
+  cd-deploy-container-to-ec2:
+    runs-on: self-hosted  # Note: you can replace "self-hosted" with the label of your self-hosted runner
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+    needs: ci-build-and-push-docker-image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Remove existing docker containers
+        run: docker rm -f $(docker ps -aq | grep -vE "$(docker ps -aq -f "name=runner|name=postgres")") || true
+      - name: Delete existing docker images
+        run: docker rmi -f $(docker image ls -q --format '{{.Repository}}:{{.Tag}}' | grep -vE "runner|postgres") || true
+      - name: Run docker containers
+        run: docker-compose up -d --build
