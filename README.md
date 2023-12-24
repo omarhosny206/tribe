@@ -173,7 +173,7 @@
     - Run the containers via docker-compose.yaml file.
 
 ## **Database Design 📝**
-![comment0]([https://github.com/omarhosny206/tribe/assets/58389695/59d23377-bb12-40f4-80c1-502c9dd67289](https://github.com/omarhosny206/tribe/assets/58389695/d81a7383-0d26-4059-8cca-4f0846628ac0))
+![DB_DIAGRAM](https://github.com/omarhosny206/tribe/assets/58389695/76ddd57c-f3de-4665-a73d-6e1be44bce5d)
 
 ## **Tech Stack ⚡**
 - Programming Language: Java 17
