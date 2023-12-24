@@ -26,6 +26,17 @@
 - Handled exceptions and input validations.
 - Deployed to AWS EC2 using Docker and GitHub Actions CI/CD.
 
+## **Usage 🛠️**
+- Run in **development** environment:
+  ```shell
+  docker-compose -f docker-compose-dev.yaml up -d --build
+  # to stop --> docker-compose -f docker-compose-dev.yaml down
+  ```
+- Run in **production** environment:
+  ```shell
+  docker-compose up -d --build
+  # to stop --> docker-compose down
+  ```
 
 ```
 .
@@ -153,7 +164,7 @@
     - Checkout the code.
     - Run the containers via docker-compose.yaml file.
 
-## **Database Design 🖊️**
+## **Database Design 📝**
 ![comment0](https://github.com/omarhosny206/tribe/assets/58389695/59d23377-bb12-40f4-80c1-502c9dd67289)
 
 
