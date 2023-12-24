@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  app:
-    container_name: app
-    build: .
+  online-ordering-service:
+    image: omarhosny102/tribe:latest
+    container_name: tribe
     environment:
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
@@ -11,29 +11,22 @@ services:
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=password
     ports:
-      - "8080:9999"
+      - "8080:8080"
     depends_on:
       - postgres
-    networks:
-      spring-app-network:
 
   postgres:
     image: postgres:latest
     container_name: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      spring-app-network:
+    restart: always
 
 volumes:
-  postgres-data:
-
-networks:
-  spring-app-network:
-    driver: bridge
+  postgres_data:
