@@ -17,15 +17,14 @@
 
 ## **Service Functionalities 🧠** 
 
-- A Backend Rest API designed using MVC Design Architecture.
-- Enables users to create posts/comment.
-- Implemented Login/Register service.
-- Ability to join tribes and bookmark posts.
-- Developed follow/unfollow user service.
+- Developed a REST API service about social media world.
+- Implemented JWT Authentication and Role-based Authorization with Login/Register services.
+- Ability to create posts and make likes/comments.
+- Ability to join tribes(groups) and bookmark posts.
+- Developed follow, unfollow, block, unblock, search and feed services.
 - Implemented view/clear search history service.
-- Email and Password based Authentication.
-- Authorization was done using JWT(Json Web Token).
-- Error and Exception handling.
+- Handled exceptions and input validations.
+- Deployed to AWS EC2 using Docker and GitHub Actions CI/CD.
 
 
 ```
