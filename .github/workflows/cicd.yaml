@@ -33,7 +33,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Remove existing docker containers
-        run: docker rm -f $(docker ps -aq | grep -vE "$(docker ps -aq -f "name=runner|name=postgres")") || true
+        run: docker rm -f $(docker ps -aq | grep -vE "$(docker ps -aq -f "name=runner|postgres")") || true
       - name: Delete existing docker images
         run: docker rmi -f $(docker image ls -q --format '{{.Repository}}:{{.Tag}}' | grep -vE "runner|postgres") || true
       - name: Run docker containers
