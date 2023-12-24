@@ -16,7 +16,6 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 ## **Service Functionalities 🧠** 
-
 - Developed a REST API service about social media world.
 - Implemented JWT Authentication and Role-based Authorization with Login/Register services.
 - Ability to create posts and make likes/comments.
