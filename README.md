@@ -1,6 +1,21 @@
 # Tribe 🚀🚀
 
-# **Service Functionalities** 🧠
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
+![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+[![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
+
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernates](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![AWS](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+## **Service Functionalities 🧠** 
 
 - A Backend Rest API designed using MVC Design Architecture.
 - Enables users to create posts/comment.
@@ -126,35 +141,32 @@
 │           └── application.properties
 ```
 
-# **Database Design 🖊️**
+## **CI/CD 🚀** [`🔗`](./.github/workflows/cicd.yaml)
+![CICD](https://github.com/omarhosny206/omarhosny206/assets/58389695/3e00292e-6229-41f2-aad8-2ee1ebfe9ec0)
+  - **CI**:
+    - Checkout the code.
+    - Login to dockerhub.
+    -  Build the docker image.
+    - Push the docker image to dockerhub. 
+  - **CD** (on AWS EC2 Ubuntu machine as GitHub Actions Self-hosted Runner [`🔗`](./setup-github-actions-runner.sh)):
+    - Stop & Remove existing containers.
+    - Delete existing images.
+    - Checkout the code.
+    - Run the containers via docker-compose.yaml file.
+
+## **Database Design 🖊️**
 ![comment0](https://github.com/omarhosny206/tribe/assets/58389695/59d23377-bb12-40f4-80c1-502c9dd67289)
 
 
-# **Tech Stack ⚡**
-
+## **Tech Stack ⚡**
 - Programming Language: Java 17
 - Backend Framework: Spring Boot v3.1.2
 - Database Engine: PostgreSQL
-- API Documentation: Swagger via OpenApi 3.0
-- Containerization and Orchestration: Docker, Kubernetes
-- Cloud: AWS
 - Other Frameworks: Spring Security Data JPA, Hibernate
-
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-
-![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-
-[![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
-
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
-![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+- API Documentation: Swagger via OpenApi 3.0
+- Containerization and Orchestration: Docker [`🔗`](./Dockerfile) [`🔗`](./docker-compose.yaml), Kubernetes [`🔗`](./k8s)
+- Cloud: AWS (EC2 Ubuntu Machine)
+- CI/CD: GitHub Actions [`🔗`](./.github/workflows/cicd.yaml) [`🔗`](./setup-github-actions-runner.sh)
 
 # **Features to add in the future 💭**
-
 - Adding OAuth 2.0.
-- Signup with Google, Facebook and other platforms.
-
-# API Documentation 📝 via [|Swagger|](http://localhost:8080/swagger-ui/index.html#/)
