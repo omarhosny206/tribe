@@ -18,12 +18,12 @@ jobs:
         run: docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
       - name: Build docker image
         run: |
-          docker build -t $DOCKERHUB_USERNAME/tribe:latest .
           docker build -t $DOCKERHUB_USERNAME/tribe:${{ github.sha }} .
+          docker build -t $DOCKERHUB_USERNAME/tribe:latest .
       - name: Push docker image to dockerhub
         run: |
-          docker push $DOCKERHUB_USERNAME/tribe:latest 
           docker push $DOCKERHUB_USERNAME/tribe:${{ github.sha }}
+          docker push $DOCKERHUB_USERNAME/tribe:latest 
   cd-deploy-container-to-ec2:
     runs-on: self-hosted  # Note: you can replace "self-hosted" with the label of your self-hosted runner
     env:
