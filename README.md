@@ -26,24 +26,20 @@
 - Handled exceptions and input validations.
 - Deployed to AWS EC2 using Docker and GitHub Actions CI/CD.
 
-## **Usage 🛠️**
-- Run in **development** environment:
-  ```shell
-  docker-compose -f docker-compose-dev.yaml up -d --build
-  # to stop --> docker-compose -f docker-compose-dev.yaml down
-  ```
-- Run in **production** environment:
-  ```shell
-  docker-compose up -d --build
-  # to stop --> docker-compose down
-  ```
-
+## **Folder Structure 📁**
 ```
 .
 ├── Dockerfile
 ├── README.md
-├── docker-compose.yml
+├── docker-compose-dev.yaml
+├── docker-compose.yaml
+├── k8s
+│   ├── postgres-k8s.yaml
+│   └── tribe-k8s.yaml
+├── mvnw
+├── mvnw.cmd
 ├── pom.xml
+├── setup-github-actions-runner.sh
 ├── src
 │   └── main
 │       ├── java
@@ -150,6 +146,18 @@
 │           ├── application-prod.properties
 │           └── application.properties
 ```
+
+## **Usage 🛠️**
+- Run in **development** environment:
+  ```shell
+  docker-compose -f docker-compose-dev.yaml up -d --build
+  # to stop --> docker-compose -f docker-compose-dev.yaml down
+  ```
+- Run in **production** environment:
+  ```shell
+  docker-compose up -d --build
+  # to stop --> docker-compose down
+  ```
 
 ## **CI/CD 🚀** [`🔗`](./.github/workflows/cicd.yaml)
 ![CICD](https://github.com/omarhosny206/omarhosny206/assets/58389695/3e00292e-6229-41f2-aad8-2ee1ebfe9ec0)
