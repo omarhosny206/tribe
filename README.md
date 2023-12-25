@@ -184,5 +184,11 @@
 - Cloud: AWS (EC2 Ubuntu Machine)
 - CI/CD: GitHub Actions [`🔗`](./.github/workflows/cicd.yaml) [`🔗`](./setup-github-actions-runner.sh)
 
-# **Features to add in the future 💭**
+## **Features to add in the future 💭**
 - Adding OAuth 2.0.
+
+## **Contribution 🤝**
+If you're interested in contributing to this repository, please follow these guidelines:
+- Fork the repository.
+- Make your changes.
+- Submit a Pull Request.
