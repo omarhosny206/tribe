@@ -22,6 +22,6 @@ kubectl apply -f postgres.yaml
 kubectl apply -f tribe.yaml
 
 # Add host entry to /etc/hosts
-echo "$INGRESS_NGINX_IP api.tribe.com" | sudo tee -a /etc/hosts
+echo "$INGRESS_NGINX_IP api.tribe.com" | tee -a /etc/hosts
 
 echo "Setup completed."
