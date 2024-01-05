@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tribe
+  labels:
+    app: tribe
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tribe
+  template:
+    metadata:
+      labels:
+        app: tribe
+    spec:
+      containers:
+        - name: tribe
+          image: omarhosny102/tribe:latest
+          env:
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: host
+            - name: DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: db-name
+            - name: DATABASE_PORT
+              value: 3300
+          ports:
+            - containerPort: 8080
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tribe-service
+  labels:
+    app: tribe
+spec:
+  type: ClusterIP
+  selector:
+    app: tribe
+  ports:
+    - port: 3200
+      targetPort: 8080
+      protocol: TCP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tribe-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.tribe.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tribe-service
+                port:
+                  number: 3200
