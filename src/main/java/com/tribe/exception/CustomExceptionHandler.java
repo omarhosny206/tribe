@@ -61,7 +61,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ErrorDto> handleUserizationException(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorDto> handleAuthorizationException(Exception ex, WebRequest request) {
         log.error("AccessDeniedException class=" + ex.getClass() + ", status=FORBIDDEN(403), message=" + ex.getMessage());
         ErrorDto errorDto = new ErrorDto(ex.getMessage() + ", you are not authorized to access this resource", HttpStatus.FORBIDDEN.value());
         return new ResponseEntity<>(errorDto, HttpStatus.FORBIDDEN);
