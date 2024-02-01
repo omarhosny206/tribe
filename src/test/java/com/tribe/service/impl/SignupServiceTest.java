@@ -49,6 +49,7 @@ class SignupServiceTest {
     public void shouldThrowExceptionWhenEmailIsAlreadyUsed() {
         // Arrange
         User user = new User();
+
         when(userService.getByEmailOrNull(anyString()))
                 .thenReturn(user);
 
