@@ -174,7 +174,7 @@
       ```
       
 ## **CI/CD 🚀** [`🔗`](./.github/workflows/cicd.yaml)
-![Deployment_Flow](https://github.com/omarhosny206/tribe/assets/58389695/585dc9ee-1a74-4bd5-9a97-3b6fd1180d04)
+![Deployment_Flow](https://github.com/omarhosny206/tribe/assets/58389695/93f4ad3c-e1c5-4e97-b11a-c8c1369a7730)
 ![CICD](https://github.com/omarhosny206/omarhosny206/assets/58389695/3e00292e-6229-41f2-aad8-2ee1ebfe9ec0)
   - **CI**:
     - Checkout the code.
