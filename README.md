@@ -197,7 +197,7 @@
 - Other Frameworks: Spring Security Data JPA, Hibernate
 - API Documentation: Swagger via OpenApi 3.0
 - Containerization and Orchestration: Docker [`🔗`](./Dockerfile) [`🔗`](./docker-compose.yaml), Kubernetes [`🔗`](./k8s)
-- Cloud: AWS (EC2 Ubuntu Machine)
+- Cloud: AWS cloud
 - CI/CD: GitHub Actions [`🔗`](./.github/workflows/cicd.yaml) [`🔗`](./setup-github-actions-runner.sh)
 
 ## **Features to add in the future 💭**
