@@ -40,9 +40,30 @@ class SignupServiceTest {
     @Mock
     private UsernameGenerator usernameGenerator;
 
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String username;
+    private String password;
+    private String hashedPassword;
+    private String accessToken;
+    private String refreshToken;
+    private User user;
+    private String tribeNamePrefix;
+
     @BeforeEach
     public void setUp() {
         openMocks(this);
+
+        id = 1L;
+        firstName = "omar";
+        lastName = "hosny";
+        email = "omarhosny102@gmail.com";
+        username = "omarhosny102";
+        password = "12345678";
+        hashedPassword = "####12345678####";
+        user = new User(id, firstName, lastName, username, email, hashedPassword);
     }
 
     @Test
@@ -69,19 +90,11 @@ class SignupServiceTest {
     @Test
     public void shouldSignupSuccessfully() {
         // Arrange
-        final Long ID = 1L;
-        final String FIRST_NAME = "omar";
-        final String SECOND_NAME = "hosny";
-        final String EMAIL = "omarhosny102@gmail.com";
-        final String USERNAME = "omarhosny102";
-        String PASSWORD = "12345678";
-        String HASHED_PASSWORD = "####12345678####";
-
         when(userService.getByEmailOrNull(anyString()))
                 .thenReturn(null);
 
         try (MockedStatic<UsernameGenerator> mocked = mockStatic(UsernameGenerator.class)) {
-            mocked.when(() -> UsernameGenerator.generateFromEmail(anyString())).thenReturn(USERNAME);
+            mocked.when(() -> UsernameGenerator.generateFromEmail(anyString())).thenReturn(username);
         }
 
         when(userService.getByUsernameOrNull(anyString()))
@@ -90,9 +103,9 @@ class SignupServiceTest {
         when(passwordEncoder.encode(anyString()))
                 .thenReturn(null);
 
-        SignupRequestDto signupRequestDto = new SignupRequestDto(FIRST_NAME, SECOND_NAME, EMAIL, PASSWORD);
-        User savedUser = new User(ID, FIRST_NAME, SECOND_NAME, USERNAME, EMAIL, HASHED_PASSWORD);
-        Tribe tribe = new Tribe("own.tribe." + savedUser.getId(), savedUser);
+        SignupRequestDto signupRequestDto = new SignupRequestDto(firstName, lastName, email, password);
+        User savedUser = new User(id, firstName, lastName, username, email, hashedPassword);
+        Tribe tribe = new Tribe(tribeNamePrefix + savedUser.getId(), savedUser);
 
         when(userService.save(any(User.class)))
                 .thenReturn(savedUser);
