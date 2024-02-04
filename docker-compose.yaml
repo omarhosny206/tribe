@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  online-ordering-service:
+  tribe:
     image: omarhosny102/tribe:latest
     container_name: tribe
     environment:
