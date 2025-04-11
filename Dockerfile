@@ -11,7 +11,7 @@ RUN ./mvnw dependency:go-offline
 
 COPY ./src ./src
 
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean package
 
 # Stage 2: Create a runtime container
 FROM amazoncorretto:17-alpine as runtime
