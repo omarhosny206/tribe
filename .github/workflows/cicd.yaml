@@ -8,6 +8,12 @@ on:
 jobs:
   ci-build-and-push-docker-image:
     runs-on: ubuntu-latest
+    services:
+      DinD:
+        image: docker:dind
+        options: --privileged
+        ports:
+          - 2375:2375
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
