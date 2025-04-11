@@ -4,7 +4,6 @@ package com.tribe.service.impl;
 import com.tribe.dto.LoginRequestDto;
 import com.tribe.dto.LoginResponseDto;
 import com.tribe.entity.User;
-import com.tribe.util.AuthenticationUser;
 import com.tribe.util.CustomUser;
 import com.tribe.util.JwtUtil;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -39,9 +37,8 @@ class LoginServiceTest {
 
     private String accessToken;
     private String refreshToken;
-    private User savedUser;
+    private User user;
     private CustomUser customUser;
-
     private LoginRequestDto loginRequestDto;
 
 
@@ -56,9 +53,9 @@ class LoginServiceTest {
         String hashedPassword = "####12345678####";
         accessToken = "access-token";
         refreshToken = "refresh-token";
-        savedUser = new User(id, firstName, lastName, username, email, hashedPassword);
-        customUser = new CustomUser(savedUser);
-        loginRequestDto = new LoginRequestDto(savedUser.getEmail(), savedUser.getPassword());
+        user = new User(id, firstName, lastName, username, email, hashedPassword);
+        customUser = new CustomUser(user);
+        loginRequestDto = new LoginRequestDto(user.getEmail(), user.getPassword());
     }
 
     @Test
@@ -83,7 +80,7 @@ class LoginServiceTest {
         // Assert
         assertThat(loginResponseDto.getUser())
                 .usingRecursiveAssertion()
-                .isEqualTo(savedUser);
+                .isEqualTo(user);
 
         assertThat(loginResponseDto.getAccessToken())
                 .isEqualTo(accessToken);
@@ -120,6 +117,4 @@ class LoginServiceTest {
         assertThat(throwable)
                 .isInstanceOf(NullPointerException.class);
     }
-
-    
 }
